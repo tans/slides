@@ -975,6 +975,54 @@
                 color: var(--dim);
                 line-height: 1.5;
             }
+            /* skill development: article walkthrough */
+            .skill-dev .header { margin-top: 30px; }
+            .skill-dev .h2 { font-size: 62px; }
+            .skill-split {
+                display: grid;
+                grid-template-columns: 440px 1fr;
+                gap: 62px;
+                align-items: center;
+                margin-top: 44px;
+            }
+            .skill-dev figure { margin: 0; }
+            .skill-dev img { display: block; width: 100%; height: auto; }
+            .skill-dev figcaption {
+                margin-top: 12px;
+                color: var(--soft);
+                font-size: 17px;
+                line-height: 1.5;
+            }
+            .skill-copy h3 { font-size: 36px; line-height: 1.35; margin: 0 0 20px; }
+            .skill-copy p { font-size: 25px; line-height: 1.65; color: var(--dim); margin: 18px 0; }
+            .skill-copy strong { color: var(--ink); }
+            .skill-copy code { color: var(--blue); font-family: var(--mono); }
+            .skill-take {
+                margin-top: 38px;
+                border-left: 5px solid var(--blue);
+                padding-left: 24px;
+                font-size: 27px;
+                line-height: 1.5;
+            }
+            .skill-file { width: 1240px; margin: 24px auto 0 !important; }
+            .skill-fields { display: grid; grid-template-columns: 0.8fr 1.15fr 1fr; gap: 40px; margin-top: 20px; }
+            .skill-fields div { border-top: 2px solid var(--line); padding-top: 14px; }
+            .skill-fields b { color: var(--blue); font: 750 25px var(--mono); }
+            .skill-fields p { margin: 8px 0 0; color: var(--dim); font-size: 22px; line-height: 1.45; }
+            .skill-paths { margin-top: 40px; width: 100%; border-collapse: collapse; }
+            .skill-paths th { font-size: 20px; color: var(--soft); text-align: left; padding: 0 22px 18px; border-bottom: 2px solid var(--ink); }
+            .skill-paths td { font-size: 25px; padding: 24px 22px; border-bottom: 1px solid var(--line); }
+            .skill-paths td:first-child { width: 170px; font-weight: 750; }
+            .skill-paths code { font: 600 24px var(--mono); color: var(--blue); }
+            .skill-load { margin-top: 34px; display: flex; gap: 40px; align-items: baseline; }
+            .skill-load b { font-size: 29px; }
+            .skill-load p { margin: 0; font-size: 24px; color: var(--dim); }
+            .skill-caution { color: #a54029; }
+            .skill-scope { font-size: 18px; color: var(--soft); margin-top: 17px; }
+            .skill-context { grid-template-columns: 1fr 390px; gap: 50px; margin-top: 30px; }
+            .skill-context .skill-copy h3 { font-size: 30px; }
+            .skill-context .skill-copy p { font-size: 23px; line-height: 1.6; }
+            .skill-context + .skill-take { margin-top: 22px; font-size: 25px; }
             /* end */
             .end {
                 background: linear-gradient(125deg, white 62%, #eff4ff 62%);
@@ -1549,13 +1597,13 @@
                         </div>
                     </div>
                     <div class="under">
-                        <span>06 / 11</span>
+                        <span>06 / 13</span>
                     </div>
                 </section>
 
                 <section class="slide" data-title="AI英语私教：延伸服务半径">
                     <div class="top">
-                        <div class="left"><b>08</b></div>
+                        <div class="left"><b>07</b></div>
                     </div>
                     <div class="header rise">
                         <h2 class="h2 tight">
@@ -1603,7 +1651,7 @@
                         </div>
                     </div>
                     <div class="under">
-                        <span>08 / 11</span>
+                        <span>07 / 13</span>
                     </div>
                 </section>
                 <section
@@ -1611,7 +1659,7 @@
                     data-title="客户经营：差异化服务"
                 >
                     <div class="top">
-                        <div class="left"><b>09</b></div>
+                        <div class="left"><b>08</b></div>
                     </div>
                     <div class="header rise">
                         <h2 class="h2 tight">
@@ -1642,80 +1690,90 @@
                         >
                     </div>
                     <div class="under">
-                        <span>09 / 11</span>
+                        <span>08 / 13</span>
                     </div>
                 </section>
-                <section
-                    class="slide"
-                    data-title="技能开发：从快速创建到持续迭代"
-                >
-                    <div class="top">
-                        <div class="left"><b>10</b></div>
-                    </div>
+                <section class="slide skill-dev" data-title="技能是什么：一个文件夹，一份说明书">
+                    <div class="top"><div class="left"><b>09</b></div></div>
                     <div class="header rise">
-                        <h2 class="h2 tight">
-                            技能开发：<br /><span class="accent"
-                                >从快速创建到持续迭代</span
-                            >
-                        </h2>
-                        <p class="lead">
-                            简单 Skill 可以从几段 Markdown 起步；GitHub
-                            帮我们记录每一次进步。
-                        </p>
+                        <h2 class="h2">技能是什么：<span class="accent">一份说明书</span></h2>
+                        <p class="lead">最简单的技能，只需要一个文件夹和一份 SKILL.md。</p>
                     </div>
-                    <div class="gitwrap">
-                        <div class="terminal rise" style="--d: 2">
-                            <div class="file">▣ SKILL.md</div>
-                            <div class="code">
-                                <span class="k">name:</span>
-                                english-tutor<br /><span class="k"
-                                    >description:</span
-                                >
-                                <span class="v"
-                                    >针对英语陪练与复习的教学技能</span
-                                ><br /><br />1. 了解学生当前水平<br />2.
-                                安排口语对话<br />3. 根据练习结果调整难度<br />4.
-                                必要时提示老师介入
-                            </div>
+                    <div class="skill-split">
+                        <div class="skill-copy rise" style="--d: 2">
+                            <h3>以“老罗抬杠”为例</h3>
+                            <p>把较真的方式、表达风格，<br />写成 AI 能读懂的说明。</p>
+                            <p><strong>必需：</strong><code>SKILL.md</code><br /><strong>可选：</strong>脚本、参考资料、素材</p>
                         </div>
-                        <div class="gitlist rise" style="--d: 3">
-                            <div class="gititem">
-                                <span class="n">01</span>
-                                <div>
-                                    <b>记录变化</b>
-                                    <p>每次修改留痕，知道哪里变好了</p>
-                                </div>
-                            </div>
-                            <div class="gititem">
-                                <span class="n">02</span>
-                                <div>
-                                    <b>版本回滚</b>
-                                    <p>发现问题，快速恢复之前版本</p>
-                                </div>
-                            </div>
-                            <div class="gititem">
-                                <span class="n">03</span>
-                                <div>
-                                    <b>借鉴开源</b>
-                                    <p>参考 GitHub 上成熟 Skill 的设计</p>
-                                </div>
-                            </div>
-                            <div class="gitfoot">
-                                GitHub 托管 → 按各平台规则发布 → 获取反馈 →
-                                持续迭代。不同市场的上架方式并不完全相同。
-                            </div>
+                        <figure class="rise" style="--d: 3">
+                            <img src="resources/skills_folder.png" alt="老罗技能的目录示例，包含 skill.md 和可选的 agents/openai.yaml" />
+                            <figcaption>原文目录示意。实际文件名按平台要求，通常使用大写 SKILL.md。</figcaption>
+                        </figure>
+                    </div>
+                    <div class="skill-take rise" style="--d: 4">简单技能用自然语言描述，复杂技能再加入脚本和接口说明。</div>
+                    <div class="under"><span>09 / 13</span></div>
+                </section>
+                <section class="slide skill-dev" data-title="技能怎么写：名称、描述、正文">
+                    <div class="top"><div class="left"><b>10</b></div></div>
+                    <div class="header rise">
+                        <h2 class="h2">技能怎么写：<span class="accent">名称、描述、正文</span></h2>
+                        <p class="lead">name 和 description 放在文件开头，正文写清楚具体怎么做。</p>
+                    </div>
+                    <figure class="skill-file rise" style="--d: 2">
+                        <img src="resources/skill.md.png" alt="老罗抬杠技能的完整 Markdown 示例，包括 name、description 和自然语言正文" />
+                    </figure>
+                    <div class="skill-fields rise" style="--d: 3">
+                        <div><b>name</b><p>技能叫什么<br />方便用户主动选择</p></div>
+                        <div><b>description</b><p>有什么用、什么时候用<br />帮助 AI 判断是否需要读取</p></div>
+                        <div><b>正文</b><p>怎么做、遵守什么规则<br />用自然语言写清楚</p></div>
+                    </div>
+                    <div class="under"><span>10 / 13</span></div>
+                </section>
+                <section class="slide skill-dev" data-title="技能从哪里加载：用户级与项目级">
+                    <div class="top"><div class="left"><b>11</b></div></div>
+                    <div class="header rise">
+                        <h2 class="h2">技能从哪里加载：<span class="accent">两类目录</span></h2>
+                        <p class="lead">以 Codex 为例，个人常用技能放用户目录，团队技能跟着项目走。</p>
+                    </div>
+                    <table class="skill-paths rise" style="--d: 2" aria-label="Codex 技能目录示例">
+                        <thead><tr><th>级别</th><th>文件位置示例</th><th>使用范围</th></tr></thead>
+                        <tbody>
+                            <tr><td>用户级</td><td><code>~/.agents/skills/laoluo/SKILL.md</code></td><td>跨项目使用</td></tr>
+                            <tr><td>项目级</td><td><code>项目A/.agents/skills/laoluo/SKILL.md</code></td><td>跟随项目共享</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="skill-load rise" style="--d: 3"><b>先读名称和描述</b><p>匹配任务后，再读取正文和所需资料。</p></div>
+                    <div class="skill-take skill-caution rise" style="--d: 4">技能装得越多，描述越占上下文，也越容易误触发。</div>
+                    <p class="skill-scope rise" style="--d: 4">不同 Agent 的目录与调用方式有所不同。含脚本的技能，安装前要检查来源与内容。</p>
+                    <div class="under"><span>11 / 13</span></div>
+                </section>
+                <section class="slide skill-dev" data-title="技能如何生效：上下文拼装">
+                    <div class="top"><div class="left"><b>12</b></div></div>
+                    <div class="header rise">
+                        <h2 class="h2">技能如何生效：<span class="accent">上下文拼装</span></h2>
+                        <p class="lead">Agent 把规则、技能、记忆、历史消息和当前问题组织好，再交给模型。</p>
+                    </div>
+                    <div class="skill-split skill-context">
+                        <figure class="rise" style="--d: 2">
+                            <img src="resources/上下文的组装.png" alt="上下文请求示意，messages 包含规则、技能名称与描述、记忆、历史消息和用户问题，tools 提供工具定义" />
+                            <figcaption>原文中的请求结构示意，用于解释原理。消息角色与调用语法以具体平台为准。</figcaption>
+                        </figure>
+                        <div class="skill-copy rise" style="--d: 3">
+                            <h3>技能说明放进消息</h3>
+                            <p>先提供名称和描述，<br />选中后再补充正文。</p>
+                            <h3>工具通过 tools 提供</h3>
+                            <p>模型发出调用请求，<br />Agent 执行后返回结果。</p>
                         </div>
                     </div>
-                    <div class="under">
-                        <span>10 / 11</span>
-                    </div>
+                    <div class="skill-take rise" style="--d: 4">持续迭代：实际试用、修改说明，用 Git 记录变化，出问题时回滚。</div>
+                    <div class="under"><span>12 / 13</span></div>
                 </section>
                 <section
                     class="slide end"
                     data-title="从想法到落地，从技能到生意"
                 >
                     <div class="top">
-                        <div class="left"><b>11</b></div>
+                        <div class="left"><b>13</b></div>
                     </div>
                     <h2 class="rise" style="--d: 1">
                         从想法到落地，<br /><span class="accent"
@@ -1739,7 +1797,7 @@
                         </div>
                     </div>
                     <div class="under">
-                        <span>11 / 11</span>
+                        <span>13 / 13</span>
                     </div>
                 </section>
             </main>
@@ -1747,7 +1805,7 @@
         <div id="progress" role="presentation"></div>
         <div id="hud" aria-label="演示控制">
             <button id="prev" title="上一页（←）" aria-label="上一页">←</button
-            ><span class="count" id="counter">01 / 11</span
+            ><span class="count" id="counter">01 / 13</span
             ><button id="next" title="下一页（→ / Space）" aria-label="下一页">
                 →</button
             ><button id="overviewBtn" title="页面总览（O）" aria-label="总览">
@@ -1782,10 +1840,12 @@
                     `第一类是直接变现的技能。比如一个视频下载工具，解决多个常见平台上合规下载的需求。临时使用可以免费，达到一定次数后提示充值，例如 9.9 元的套餐。有高频需求的用户就可能付费。\n\n这里 9.9 元只是举例，真正落地要核算上游接口、服务器、售后和支付成本，还要遵守内容授权及平台规定。我们想讲的是：一个垂直的小功能，也可以形成清晰的交易。`,
                     `视频下载是切入点，不一定是终点。使用者可能还需要自动整理数据分析报表、自动生成文案，甚至对数字人、视频生成和社群服务感兴趣。\n\n这说明即使第一个 Skill 收费金额不大，只要帮助我们建立了一批明确有需求的用户，也有机会发现更多业务方向。`,
                     `第二类是企业品牌引流留资。我之前给一家外墙砖厂商提出过老屋翻新效果图 Skill 的方案。用户上传房子外墙照片，Skill 使用厂商自己的产品系列与风格，生成改造后的概念效果。\n\n它既能给销售人员当辅助工具，也能作为免费体验放在公众号、小红书等渠道。用户在体验中认识产品，觉得好看，就可以自愿点击报价咨询入口。\n\n需要特别说明：这个方案目前还没有真正落地，我们还在考虑通过小红书活动来推广。现在页面上的房屋示意也只是风格对比，并非已经生成的客户案例。`,
-                    `还有一个现实问题。Skill 上架技能市场，基本不会天然获得可观的自然流量。公开市场中有一个技能，并不代表 AI 会主动联网找到并调用它。\n\n如果是用户已安装、当前环境可访问的技能，Agent 有可能依据任务匹配去调用，也可能需要用户明确指令。所以不能简单说只有点名才会触发，但也不应该指望上架后自然增长。外部推广仍然非常重要。`,
                     `第三类是英语 AI 私教。这个想法最初来自我给自己的孩子寻找学习方法。很多辅导班老师已经有专业教学经验，可以把这些方法封装成可重复使用的 Skill。\n\n它可以主动和孩子练英语，结合薄弱知识点和兴趣设计练习，尤其适合口语。涉及孩子的长期学习记录，需要在合适的平台条件下保存，并经监护人知情同意。不能假设任何 Skill 都天然拥有长期记忆能力。`,
                     `英语 AI 私教不仅可以作为免费体验，吸引有需要的家长自愿添加老师微信；还可以成为机构课程的一部分。比如原本一两千元的课程，只提供线下课时，未来可以搭配持续可用的 AI 课后练习能力。\n\n这里不应该承诺“成绩必然从 60 分提升到 80 分”，更重要的是：除了真人授课，机构还教会孩子如何借助 AI 进行持续学习。家长看到的就不只是几节课，而是一套辅助学习的方案。\n\n‘终身使用’也应以服务实际维护和条款为前提，不要做不能兑现的承诺。`,
-                    `今天没有时间展开所有技术细节，但想提醒一个很重要的能力：版本管理。版本管理原来是开发者的工具，现在做 Skill 也很有帮助。每次修改的记录、版本回滚、变更历史都可以交给 Git 管理。\n\nGitHub 上面也有很多开源 Skill，可以参考同行的编写思路。把技能保存和发布之后，还要根据不同平台的规范安排安装、审核和维护，例如 WorkBuddy 等平台的支持方式要以官方规则为准。`,
+                    `技能开发可以从很简单的结构开始。一个文件夹里放一份 SKILL.md，就是最小的技能。比如这里的“老罗抬杠”，把较真的方式、表达风格和边界写清楚，AI 就有了可重复参考的说明。简单技能只用自然语言即可，复杂技能可以再加脚本、接口用法、参考资料和素材。图中 agents/openai.yaml 是可选的平台配置。原文图片使用小写 skill.md，实际应遵守运行平台的命名要求，通常写作大写 SKILL.md。`,
+                    `打开这份文件，最前面是用三条短横线包住的元数据。name 是技能名称，description 说明技能的用途和触发时机。用户可以主动选择技能，支持命令补全的平台也可能提供相应入口。AI 也会参考描述判断当前任务是否适合使用它。后面的正文就是做事方法，用自然语言写清楚即可。这里保留原文“老罗抬杠”的完整例子：先亮观点，抓关键漏洞，用反问和反例推动交锋，再给建议。讲证据，对事不对人，新证据成立就改口，用户要求停止就收住。`,
+                    `技能要放在 Agent 能发现的位置。这里用 Codex 举例：用户级目录是 ~/.agents/skills，适合个人跨项目使用。项目级目录是项目里的 .agents/skills，适合团队跟着代码共享。完整文件路径如表格所示。不同 Agent 的查找目录和命令并不完全一样。加载也不是把所有技能正文一次性塞进上下文：先提供名称和描述，匹配任务后才读取正文，再按需读取资料或执行脚本。因此装太多技能仍然会占用描述空间，也可能带来误触发。含脚本的技能具有执行能力，安装前需要检查来源与内容。目录与按需加载机制参考：https://learn.chatgpt.com/docs/customization/overview 。`,
+                    `技能如何起作用？可以把它理解为上下文的拼装。Agent 把规则、技能名称和描述、需要参考的记忆、历史消息以及用户当前问题组织成消息，把工具定义放进 tools，再向模型发请求。需要某个技能时，Agent 读取文件，把正文加入后续上下文。模型如果请求调用工具，Agent 负责执行，并把结果交回模型继续处理。图中是原文的简化示意，不是可以直接复制运行的 API 代码，技能也不一定由每个平台放在 system 角色中。理解这一点以后，开发就是把说明写清楚，再用真实任务试用。用 Git 记录每次修改，效果变差时可以恢复旧版。按需加载机制参考：https://learn.chatgpt.com/docs/customization/overview 。`,
                     `最后总结一下：技能开发的难点不在于把文档写出来。今天借助 AI，简单 Skill 甚至可以在一次半小时到一小时的交流中搭出原型。但后续的稳定性、分发、迭代与商业化，仍需要耐心经营。\n\n大家可以先找准自己的一个垂直需求，再选择收费、品牌宣传或者长期客户关系中的一种或多种目标。\n\n感谢大家，接下来欢迎提问。对开发、上架、引流、服务客户这些事情感兴趣，也欢迎现场加我的微信，一起组建技能变现交流小组。谢谢大家。`,
                 ];
                 let idx = 0,
@@ -1989,3 +2049,4 @@
         </script>
     </body>
 </html>
+
