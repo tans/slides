@@ -542,6 +542,14 @@
             .paidsteps {
                 border-top: 2px solid var(--ink);
             }
+            .agent-chat-image {
+                display: block;
+                width: 100%;
+                height: auto;
+                border: 1px solid var(--line);
+                border-radius: 16px;
+                background: #fff;
+            }
             .paidstep {
                 display: flex;
                 align-items: flex-start;
@@ -1473,19 +1481,14 @@
                         </p>
                     </div>
                     <div class="paid">
-                        <div class="chatbox rise" style="--d: 2">
-                            <div class="bubble user">
-                                帮我下载这个youtube视频。https://youtub****
-                            </div>
-                            <div class="bubble bot">
-                                已解析链接，可以开始下载。<br />本月免费额度剩余：0
-                                次。
-                            </div>
-                            <div class="purchase">
-                                <span>继续下载 · 充值</span
-                                ><strong>¥ 9.9</strong>
-                            </div>
-                        </div>
+                        <img
+                            class="agent-chat-image rise"
+                            style="--d: 2"
+                            src="resources/paid-skill-chat.png"
+                            width="1536"
+                            height="1024"
+                            alt="ChatGPT 风格的下载助手对话示意：解析视频链接，提示免费额度剩余 0 次，展示 9.9 元下载次数套餐和充值继续按钮"
+                        />
                         <div class="paidsteps rise" style="--d: 3">
                             <div class="paidstep">
                                 <span class="circle">1</span>
@@ -1614,18 +1617,14 @@
                         </p>
                     </div>
                     <div class="tutor">
-                        <div class="tutorChat rise" style="--d: 2">
-                            <div class="msg">
-                                What did you do after school today?
-                            </div>
-                            <div class="msg you">
-                                I play football with my friends.
-                            </div>
-                            <div class="msg">
-                                Great! 如果说的是“今天放学后”，我们可以用
-                                <b>played</b>。Try again!
-                            </div>
-                        </div>
+                        <img
+                            class="agent-chat-image rise"
+                            style="--d: 2"
+                            src="resources/english-tutor-chat.png"
+                            width="1536"
+                            height="1024"
+                            alt="ChatGPT 风格的英语私教对话示意：询问放学后的活动，将 I play football 纠正为 I played football，并引导学生重新练习"
+                        />
                         <div class="tutor-right rise" style="--d: 3">
                             <div class="tutorpt">
                                 <div class="n">01</div>
