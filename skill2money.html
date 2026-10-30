@@ -332,6 +332,28 @@
                 border-top: 1px solid var(--line);
                 padding-top: 18px;
             }
+            /* contact card on the opening and closing slides */
+            .contact-card {
+                position: absolute;
+                right: 90px;
+                top: 180px;
+                width: 390px;
+                margin: 0;
+            }
+            .contact-card img {
+                display: block;
+                width: 100%;
+                height: auto;
+                border: 1px solid var(--line);
+                background: #fff;
+            }
+            .contact-card figcaption {
+                margin-top: 16px;
+                color: var(--blue);
+                font-size: 23px;
+                line-height: 1.5;
+                text-align: center;
+            }
             /* motivation */
             .barrier {
                 display: grid;
@@ -1443,6 +1465,15 @@
                     <div class="desc rise" style="--d: 3">
                         早期阶段 ｜ 垂直需求 ｜ 商业驱动
                     </div>
+                    <figure class="contact-card rise" style="--d: 4">
+                        <img
+                            src="resources/wechat-business-card.jpg"
+                            width="592"
+                            height="754"
+                            alt="A HAO 的微信名片，扫描二维码添加微信好友"
+                        />
+                        <figcaption>扫码交流 · Skill 开发与变现</figcaption>
+                    </figure>
                     <!--<div class="rings" aria-hidden="true"></div><div class="bottomline">AGENT SKILLS ARE NOT ONLY TOOLS. THEY CAN BECOME BUSINESS ASSETS.</div>-->
                 </section>
                 <section class="slide" data-title="技能的常见用途">
@@ -1862,14 +1893,15 @@
                         <div class="step"><b>02</b>动手开发验证</div>
                         <div class="step"><b>03</b>发布、推广、迭代</div>
                     </div>
-                    <div class="qa rise" style="--d: 4">
-                        <div>
-                            <p>欢迎现场交流<br />Skill 开发与变现</p>
-                            <br /><small
-                                >技能变现交流小组<br />可现场添加微信加入</small
-                            >
-                        </div>
-                    </div>
+                    <figure class="contact-card rise" style="--d: 4">
+                        <img
+                            src="resources/wechat-business-card.jpg"
+                            width="592"
+                            height="754"
+                            alt="A HAO 的微信名片，扫描二维码添加微信好友"
+                        />
+                        <figcaption>欢迎扫码交流<br />加入技能变现交流小组</figcaption>
+                    </figure>
                     <div class="under">
                         <span>15 / 15</span>
                     </div>
