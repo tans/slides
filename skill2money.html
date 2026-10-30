@@ -1031,6 +1031,37 @@
             .skill-context .skill-copy h3 { font-size: 30px; }
             .skill-context .skill-copy p { font-size: 23px; line-height: 1.6; }
             .skill-context + .skill-take { margin-top: 22px; font-size: 25px; }
+            /* product introductions */
+            .product-slide .h2 { font-size: 62px; }
+            .product-layout {
+                display: grid;
+                grid-template-columns: 790px 1fr;
+                gap: 70px;
+                margin-top: 34px;
+                align-items: start;
+            }
+            .product-visual { display: block; border-radius: 14px; overflow: hidden; }
+            .product-visual img { display: block; width: 100%; height: auto; }
+            .product-points { margin: 0; }
+            .product-points > div { border-top: 1px solid var(--line); padding: 20px 0; }
+            .product-points > div:first-child { border-top: 2px solid var(--ink); }
+            .product-points dt { font-size: 29px; font-weight: 780; }
+            .product-points dd { margin: 9px 0 0; font-size: 23px; line-height: 1.5; color: var(--dim); }
+            .product-link {
+                display: inline-flex;
+                align-items: center;
+                gap: 24px;
+                margin-top: 18px;
+                padding-bottom: 9px;
+                border-bottom: 2px solid currentColor;
+                color: var(--blue);
+                font-size: 27px;
+                font-weight: 750;
+                text-decoration: none;
+            }
+            .product-link:hover { color: var(--ink); }
+            .product-domain { margin: 12px 0 0; font: 500 18px var(--mono); color: var(--soft); }
+            a:focus-visible { outline: 3px solid #77a0ff; outline-offset: 5px; }
             /* end */
             .end {
                 background: linear-gradient(125deg, white 62%, #eff4ff 62%);
@@ -1600,7 +1631,7 @@
                         </div>
                     </div>
                     <div class="under">
-                        <span>06 / 13</span>
+                        <span>06 / 15</span>
                     </div>
                 </section>
 
@@ -1650,7 +1681,7 @@
                         </div>
                     </div>
                     <div class="under">
-                        <span>07 / 13</span>
+                        <span>07 / 15</span>
                     </div>
                 </section>
                 <section
@@ -1689,7 +1720,7 @@
                         >
                     </div>
                     <div class="under">
-                        <span>08 / 13</span>
+                        <span>08 / 15</span>
                     </div>
                 </section>
                 <section class="slide skill-dev" data-title="技能是什么：一个文件夹，一份说明书">
@@ -1710,7 +1741,7 @@
                         </figure>
                     </div>
                     <div class="skill-take rise" style="--d: 4">简单技能用自然语言描述，复杂技能再加入脚本和接口说明。</div>
-                    <div class="under"><span>09 / 13</span></div>
+                    <div class="under"><span>09 / 15</span></div>
                 </section>
                 <section class="slide skill-dev" data-title="技能怎么写：名称、描述、正文">
                     <div class="top"><div class="left"><b>10</b></div></div>
@@ -1726,7 +1757,7 @@
                         <div><b>description</b><p>有什么用、什么时候用<br />帮助 AI 判断是否需要读取</p></div>
                         <div><b>正文</b><p>怎么做、遵守什么规则<br />用自然语言写清楚</p></div>
                     </div>
-                    <div class="under"><span>10 / 13</span></div>
+                    <div class="under"><span>10 / 15</span></div>
                 </section>
                 <section class="slide skill-dev" data-title="技能从哪里加载：用户级与项目级">
                     <div class="top"><div class="left"><b>11</b></div></div>
@@ -1744,7 +1775,7 @@
                     <div class="skill-load rise" style="--d: 3"><b>先读名称和描述</b><p>匹配任务后，再读取正文和所需资料。</p></div>
                     <div class="skill-take skill-caution rise" style="--d: 4">技能装得越多，描述越占上下文，也越容易误触发。</div>
                     <p class="skill-scope rise" style="--d: 4">不同 Agent 的目录与调用方式有所不同。含脚本的技能，安装前要检查来源与内容。</p>
-                    <div class="under"><span>11 / 13</span></div>
+                    <div class="under"><span>11 / 15</span></div>
                 </section>
                 <section class="slide skill-dev" data-title="技能如何生效：上下文拼装">
                     <div class="top"><div class="left"><b>12</b></div></div>
@@ -1765,14 +1796,58 @@
                         </div>
                     </div>
                     <div class="skill-take rise" style="--d: 4">持续迭代：实际试用、修改说明，用 Git 记录变化，出问题时回滚。</div>
-                    <div class="under"><span>12 / 13</span></div>
+                    <div class="under"><span>12 / 15</span></div>
+                </section>
+                <section class="slide product-slide" data-title="AIPay：让技能接入收款">
+                    <div class="top"><div class="left"><b>13</b></div></div>
+                    <div class="header rise">
+                        <h2 class="h2">AIPay：<span class="accent">让技能接入收款</span></h2>
+                        <p class="lead">支付宝面向 AI 应用、Skill 与 API 服务的支付平台。</p>
+                    </div>
+                    <div class="product-layout">
+                        <a class="product-visual rise" style="--d: 2" href="https://aipay.alipay.com/" target="_blank" rel="noopener noreferrer" aria-label="访问 AIPay 支付宝 AI 付官网（新窗口）">
+                            <img src="resources/aipay.png" width="1578" height="1002" alt="支付宝 AI 付的按量付费产品截图，点击访问官网" />
+                        </a>
+                        <div class="rise" style="--d: 3">
+                            <dl class="product-points">
+                                <div><dt>技能收款</dt><dd>用 Skill Pay 为技能提供收费入口。</dd></div>
+                                <div><dt>按量计费</dt><dd>用 Machine Pay 按接口调用等用量收费。</dd></div>
+                                <div><dt>Agent 辅助接入</dt><dd>安装官方 Skill，按引导完成集成与测试。</dd></div>
+                            </dl>
+                            <a class="product-link" href="https://aipay.alipay.com/" target="_blank" rel="noopener noreferrer">访问 AIPay 官网 <span aria-hidden="true">↗</span></a>
+                            <p class="product-domain">aipay.alipay.com</p>
+                        </div>
+                    </div>
+                    <div class="under"><span>13 / 15</span></div>
+                </section>
+                <section class="slide product-slide" data-title="SkillHub：发布与发现技能">
+                    <div class="top"><div class="left"><b>14</b></div></div>
+                    <div class="header rise">
+                        <h2 class="h2">SkillHub：<span class="accent">发布与发现技能</span></h2>
+                        <p class="lead">面向中国用户的 AI Skills 社区，连接开发者与使用者。</p>
+                    </div>
+                    <div class="product-layout">
+                        <a class="product-visual rise" style="--d: 2" href="https://skillhub.cn/" target="_blank" rel="noopener noreferrer" aria-label="访问 SkillHub 官网（新窗口）">
+                            <img src="resources/skillhub.cn.png" width="1778" height="1129" alt="SkillHub 技能社区首页截图，点击访问官网" />
+                        </a>
+                        <div class="rise" style="--d: 3">
+                            <dl class="product-points">
+                                <div><dt>找技能</dt><dd>通过搜索、分类与榜单，发现可用能力。</dd></div>
+                                <div><dt>装技能</dt><dd>按平台指引，把技能安装到自己的 Agent。</dd></div>
+                                <div><dt>发布技能</dt><dd>上传自己的技能，让用户发现和安装。</dd></div>
+                            </dl>
+                            <a class="product-link" href="https://skillhub.cn/" target="_blank" rel="noopener noreferrer">访问 SkillHub 官网 <span aria-hidden="true">↗</span></a>
+                            <p class="product-domain">skillhub.cn</p>
+                        </div>
+                    </div>
+                    <div class="under"><span>14 / 15</span></div>
                 </section>
                 <section
                     class="slide end"
                     data-title="从想法到落地，从技能到生意"
                 >
                     <div class="top">
-                        <div class="left"><b>13</b></div>
+                        <div class="left"><b>15</b></div>
                     </div>
                     <h2 class="rise" style="--d: 1">
                         从想法到落地，<br /><span class="accent"
@@ -1796,7 +1871,7 @@
                         </div>
                     </div>
                     <div class="under">
-                        <span>13 / 13</span>
+                        <span>15 / 15</span>
                     </div>
                 </section>
             </main>
@@ -1804,7 +1879,7 @@
         <div id="progress" role="presentation"></div>
         <div id="hud" aria-label="演示控制">
             <button id="prev" title="上一页（←）" aria-label="上一页">←</button
-            ><span class="count" id="counter">01 / 13</span
+            ><span class="count" id="counter">01 / 15</span
             ><button id="next" title="下一页（→ / Space）" aria-label="下一页">
                 →</button
             ><button id="overviewBtn" title="页面总览（O）" aria-label="总览">
@@ -1845,6 +1920,8 @@
                     `打开这份文件，最前面是用三条短横线包住的元数据。name 是技能名称，description 说明技能的用途和触发时机。用户可以主动选择技能，支持命令补全的平台也可能提供相应入口。AI 也会参考描述判断当前任务是否适合使用它。后面的正文就是做事方法，用自然语言写清楚即可。这里保留原文“老罗抬杠”的完整例子：先亮观点，抓关键漏洞，用反问和反例推动交锋，再给建议。讲证据，对事不对人，新证据成立就改口，用户要求停止就收住。`,
                     `技能要放在 Agent 能发现的位置。这里用 Codex 举例：用户级目录是 ~/.agents/skills，适合个人跨项目使用。项目级目录是项目里的 .agents/skills，适合团队跟着代码共享。完整文件路径如表格所示。不同 Agent 的查找目录和命令并不完全一样。加载也不是把所有技能正文一次性塞进上下文：先提供名称和描述，匹配任务后才读取正文，再按需读取资料或执行脚本。因此装太多技能仍然会占用描述空间，也可能带来误触发。含脚本的技能具有执行能力，安装前需要检查来源与内容。目录与按需加载机制参考：https://learn.chatgpt.com/docs/customization/overview 。`,
                     `技能如何起作用？可以把它理解为上下文的拼装。Agent 把规则、技能名称和描述、需要参考的记忆、历史消息以及用户当前问题组织成消息，把工具定义放进 tools，再向模型发请求。需要某个技能时，Agent 读取文件，把正文加入后续上下文。模型如果请求调用工具，Agent 负责执行，并把结果交回模型继续处理。图中是原文的简化示意，不是可以直接复制运行的 API 代码，技能也不一定由每个平台放在 system 角色中。理解这一点以后，开发就是把说明写清楚，再用真实任务试用。用 Git 记录每次修改，效果变差时可以恢复旧版。按需加载机制参考：https://learn.chatgpt.com/docs/customization/overview 。`,
+                    `这里介绍一个支付产品：AIPay，也就是支付宝 AI 付。它面向 AI 应用、Skill 和 API 服务提供支付能力。对技能开发者而言，可以关注 Skill Pay 的技能收款，以及 Machine Pay 的按量计费。官方也提供接入 Skill，让 Agent 协助完成集成和测试。具体的产品开通、签约与上线条件，以官网当前说明为准。页面展示的是仓库已有的按量付费产品截图，截图与官网文字链接都可以点击，在新窗口打开官网。资料来源：https://aipay.alipay.com/ ，https://aipay.alipay.com/docs/overview.html 。`,
+                    `另一个产品是 SkillHub，面向中国用户的 AI Skills 社区。使用者可以通过搜索、分类或榜单发现技能，再按照平台指引安装到自己的 Agent。开发者可以发布自己的技能，让用户发现和安装。这一页使用仓库中已有的 SkillHub 首页截图，点击截图或访问官网链接，都可以在新窗口打开 skillhub.cn。它提供的是技能发现与分发渠道，后续仍然需要结合自己的用户和场景持续推广。资料来源：https://skillhub.cn/ ，https://github.com/Tencent/skillhub 。`,
                     `最后总结一下：技能开发的难点不在于把文档写出来。今天借助 AI，简单 Skill 甚至可以在一次半小时到一小时的交流中搭出原型。但后续的稳定性、分发、迭代与商业化，仍需要耐心经营。\n\n大家可以先找准自己的一个垂直需求，再选择收费、品牌宣传或者长期客户关系中的一种或多种目标。\n\n感谢大家，接下来欢迎提问。对开发、上架、引流、服务客户这些事情感兴趣，也欢迎现场加我的微信，一起组建技能变现交流小组。谢谢大家。`,
                 ];
                 let idx = 0,
