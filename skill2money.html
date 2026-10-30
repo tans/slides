@@ -1297,6 +1297,41 @@
                 margin-top: 13px;
                 font-size: 18px;
             }
+            .uses-layout {
+                position: absolute;
+                inset: 23% 5% 10%;
+                display: grid;
+                grid-template-columns: 0.55fr 1.45fr;
+                grid-template-rows: minmax(0, 1fr);
+                gap: 2%;
+                align-items: center;
+            }
+            .uses-list {
+                min-width: 0;
+                border-top: 2px solid var(--ink);
+            }
+            .uses-item {
+                min-height: 0;
+                height: 25%;
+                display: flex;
+                align-items: center;
+                gap: 22px;
+                border-bottom: 1px solid var(--line);
+                font-size: 31px;
+                font-weight: 760;
+            }
+            .uses-item span {
+                color: var(--blue);
+                font: 800 22px var(--mono);
+            }
+            .uses-image {
+                width: 100%;
+                height: 100%;
+                min-width: 0;
+                min-height: 0;
+                object-fit: contain;
+                display: block;
+            }
         </style>
     </head>
     <body>
@@ -1317,13 +1352,31 @@
                     <div class="desc rise" style="--d: 3">
                         早期阶段 ｜ 垂直需求 ｜ 商业驱动
                     </div>
-                    <div class="cover-right rise" style="--d: 4">
-                        技能的常见用途
-                        <div><b>固定流程和风格</b></div>
-                        <div><b>补充信息和知识</b></div>
-                        <div><b>内置素材和程序</b></div>
-                    </div>
                     <!--<div class="rings" aria-hidden="true"></div><div class="bottomline">AGENT SKILLS ARE NOT ONLY TOOLS. THEY CAN BECOME BUSINESS ASSETS.</div>-->
+                </section>
+                <section class="slide" data-title="技能的常见用途">
+                    <div class="top">
+                        <div class="left"><b>01</b></div>
+                    </div>
+                    <div class="header rise">
+                        <h2 class="h2">技能的常见用途</h2>
+                    </div>
+                    <div class="uses-layout">
+                        <div class="uses-list rise" style="--d: 2">
+                            <div class="uses-item"><span>01</span>固定流程和风格</div>
+                            <div class="uses-item"><span>02</span>补充信息和知识</div>
+                            <div class="uses-item"><span>03</span>内置素材和程序</div>
+                        </div>
+                        <img
+                            class="uses-image rise"
+                            style="--d: 3"
+                            src="resources/hot-skills.png"
+                            alt="热门技能示例"
+                        />
+                    </div>
+                    <div class="under">
+                        <span>COMMON USES OF SKILLS</span><span>02 / 11</span>
+                    </div>
                 </section>
                 <section class="slide" data-title="学习 AI，从动手开始">
                     <div class="top">
@@ -1371,7 +1424,7 @@
                     </div>
                     <div class="under">
                         <span>FROM CONSUMPTION TO CREATION</span
-                        ><span>02 / 11</span>
+                        ><span>03 / 12</span>
                     </div>
                 </section>
                 <section class="slide" data-title="一个技能，三种价值">
@@ -2031,7 +2084,7 @@
                 const slides = [...document.querySelectorAll(".slide")];
                 const notes = [
                     `各位大家好，今天分享的主题是 AI Agent 技能开发与变现。\n\n我想先聊聊自己的一些思考：学习 AI 最好的方式，就是动手使用它，甚至尝试自己做一些创作。这场分享不是一堂编程课，而是想讨论为什么值得做一个 Skill，以及怎样让它持续产生价值。`,
-                    `如果直接把 AI 运用到我们的日常工作，会遇到不少门槛，例如部门间的协作，或者做 PPT、剪辑视频时，当 AI 输出不符合预期，大家往往还是回到原来的工作方式。\n\n遇到这种情况，我觉得可以从一个全新的小想法、小型产品入手。不管是做品牌、做小生意，还是给自己做工具，这种创造冲动我们都有过。小项目的好处，是你可以自己决定怎么验证。`,
+                    `技能常用于固定流程和风格、补充信息和知识，以及内置素材和程序。这里展示了热门技能示例，帮助大家直观看到技能能封装哪些能力。`,
                     `只做一个技能给别人使用，有时会缺少持续行动的动力。所以要看见它的实际价值。\n\n我把常见的动力总结成三个方向：第一，技能本身产生收入；第二，为企业提供品牌宣传、产品体验和引流留资；第三，通过持续服务与目标客户建立联系。它们可以分开做，也可以组合起来。`,
                     `第一类是直接变现的技能。比如一个视频下载工具，解决多个常见平台上合规下载的需求。临时使用可以免费，达到一定次数后提示充值，例如 9.9 元的套餐。有高频需求的用户就可能付费。\n\n这里 9.9 元只是举例，真正落地要核算上游接口、服务器、售后和支付成本，还要遵守内容授权及平台规定。我们想讲的是：一个垂直的小功能，也可以形成清晰的交易。`,
                     `视频下载是切入点，不一定是终点。使用者可能还需要自动整理数据分析报表、自动生成文案，甚至对数字人、视频生成和社群服务感兴趣。\n\n这说明即使第一个 Skill 收费金额不大，只要帮助我们建立了一批明确有需求的用户，也有机会发现更多业务方向。`,
