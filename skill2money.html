@@ -1,166 +1,2259 @@
 <!doctype html>
 <html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f4f6f9">
-<title>AI Agent 技能开发与变现 · 统一标题版</title>
-<style>
-:root{--ink:#172236;--dim:#607087;--soft:#8995a5;--blue:#2859e4;--sky:#eaf0ff;--line:#dbe2ea;--ivory:#f6f8fb;--mint:#e3f5ef;--green:#17765d;--apricot:#fff0dc;--serif:'Songti SC','Noto Serif CJK SC',serif;--sans:'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',system-ui,sans-serif;--mono:'SFMono-Regular','JetBrains Mono','Consolas',monospace}
-*{box-sizing:border-box}html,body{height:100%;margin:0;overflow:hidden}body{font-family:var(--sans);color:var(--ink);background:#e3e7ee;-webkit-font-smoothing:antialiased}button{font:inherit}button:focus-visible{outline:3px solid #77a0ff;outline-offset:3px}
-#viewport{position:fixed;inset:0;overflow:hidden}#deck{position:absolute;left:50%;top:50%;width:1600px;height:900px;transform-origin:center center;background:white;box-shadow:0 28px 100px rgba(15,33,65,.18);overflow:hidden}
-.slide{position:absolute;inset:0;visibility:hidden;opacity:0;pointer-events:none;background:#fff;padding:61px 90px 60px;overflow:hidden}.slide.active{visibility:visible;opacity:1;pointer-events:auto;z-index:3}.slide.leaving{visibility:visible;opacity:1;pointer-events:none;z-index:2}.slide.in-next{animation:inNext .70s cubic-bezier(.17,.84,.22,1) both}.slide.in-prev{animation:inPrev .70s cubic-bezier(.17,.84,.22,1) both}.slide.out-next{animation:outNext .57s ease both}.slide.out-prev{animation:outPrev .57s ease both}@keyframes inNext{from{opacity:.65;clip-path:inset(0 0 0 100%);transform:translateX(65px)}to{opacity:1;clip-path:inset(0);transform:none}}@keyframes inPrev{from{opacity:.65;clip-path:inset(0 100% 0 0);transform:translateX(-65px)}to{opacity:1;clip-path:inset(0);transform:none}}@keyframes outNext{from{opacity:1;transform:none}to{opacity:.16;transform:translateX(-75px)}}@keyframes outPrev{from{opacity:1;transform:none}to{opacity:.16;transform:translateX(75px)}}.rise{opacity:0;transform:translateY(24px);transition:transform .7s cubic-bezier(.18,.78,.24,1),opacity .7s ease;transition-delay:calc(130ms + var(--d,0)*100ms)}.active .rise{opacity:1;transform:translateY(0)}
-.top{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:2px solid var(--ink)}.top .left,.top .right{font:700 16px var(--mono);letter-spacing:.055em}.top .left b{color:var(--blue)}.top .right{color:var(--soft)}.eyebrow{font:750 17px var(--mono);color:var(--blue);letter-spacing:.07em}.header{margin-top:35px}.h2{margin:13px 0 10px;font-size:66px;line-height:1.16;font-weight:820;letter-spacing:-2.4px}.h2.xl{font-size:76px}.h2.tight{font-size:60px}.accent{color:var(--blue)}.lead{font-size:24px;color:var(--dim);line-height:1.52;margin:12px 0 0}.under{position:absolute;left:90px;right:90px;bottom:34px;border-top:1px solid var(--line);padding-top:11px;display:flex;justify-content:space-between;color:var(--soft);font:700 15px var(--mono);letter-spacing:.06em}.under span:last-child{color:var(--ink)}.tiny{font-size:17px;color:var(--dim);line-height:1.6}.blue-line{height:4px;width:78px;background:var(--blue)}.label{font:750 16px var(--mono);color:var(--soft);letter-spacing:.07em}.rule{height:1px;background:var(--line)}.shell{margin-top:46px}.sidenum{font:750 19px var(--mono);color:var(--blue)}
-/* opening editorial */
-.cover{background:linear-gradient(115deg,#ffffff 67%,#f5f8ff 67%)}.cover .mast{display:flex;justify-content:space-between;align-items:center;font:750 18px var(--mono);letter-spacing:.07em}.cover .mast span:last-child{color:var(--soft)}.cover h1{font-size:108px;line-height:1.02;letter-spacing:-5px;margin:136px 0 0;font-weight:850;max-width:1030px}.cover h1 strong{color:var(--blue)}.cover .subtitle{font-size:39px;font-weight:720;margin-top:37px}.cover .desc{font-size:24px;line-height:1.55;color:var(--dim);margin-top:20px}.cover .cover-right{position:absolute;right:105px;top:205px;width:210px;height:360px;border:2px solid var(--blue);display:flex;flex-direction:column;justify-content:space-around;padding:25px 19px}.cover .cover-right b{font-size:31px;line-height:1.15}.cover .cover-right small{font:700 15px var(--mono);color:var(--blue)}.cover .rings{position:absolute;width:450px;height:450px;border:1px solid #cad9ff;border-radius:50%;right:-210px;bottom:-225px}.cover .rings:before,.cover .rings:after{content:"";position:absolute;border:1px solid #cad9ff;border-radius:50%;inset:70px}.cover .rings:after{inset:145px}.cover .bottomline{position:absolute;bottom:52px;left:90px;width:1000px;font:650 18px var(--mono);color:var(--soft);border-top:1px solid var(--line);padding-top:18px}
-/* motivation */
-.barrier{display:grid;grid-template-columns:1fr 90px 1fr;gap:28px;margin-top:70px;align-items:stretch}.barrier-side{border-top:3px solid var(--ink);padding-top:23px}.barrier-side.good{border-color:var(--blue);background:linear-gradient(#f6f9ff,white)}.barrier-side h3{font-size:36px;margin:4px 0 20px}.barrier-side p{font-size:25px;line-height:1.53;color:var(--dim);margin:0}.barrier-side .item{border-top:1px solid var(--line);padding:21px 0;display:flex;justify-content:space-between;font-size:24px;font-weight:650}.barrier-side .item span:last-child{color:var(--soft);font-size:19px}.barrier-center{display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:55px}.barrier-take{margin-top:34px;border-left:5px solid var(--blue);padding-left:22px;font-size:30px;font-weight:730}
-/* lifecycle */
-.timeline{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-top:71px;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink)}.timeline .step{position:relative;padding:28px 35px 48px 0;min-height:285px}.timeline .step+.step{border-left:1px solid var(--line);padding-left:35px}.timeline .step .n{font:800 65px var(--mono);color:#d7dfea;line-height:1}.timeline .step:last-child .n{color:var(--blue)}.timeline .step h3{font-size:34px;margin:27px 0 17px}.timeline .step p{font-size:22px;color:var(--dim);line-height:1.48}.timeline .step .arr{position:absolute;top:45px;right:26px;color:var(--blue);font-size:42px}.skillcode{display:flex;gap:30px;align-items:center;margin-top:45px;background:var(--ivory);padding:25px 31px;border-left:5px solid var(--blue)}.skillcode .f{font:800 25px var(--mono);color:var(--blue);white-space:nowrap}.skillcode .txt{font-size:25px;line-height:1.45}.skillcode .note{color:var(--dim);font-size:19px}
-/* models */
-.triple{margin-top:73px;border-top:2px solid var(--ink)}.triple .row{display:grid;grid-template-columns:120px 410px 1fr 150px;gap:12px;align-items:center;min-height:148px;border-bottom:1px solid var(--line)}.triple .row .num{font:800 27px var(--mono);color:var(--blue)}.triple .row h3{font-size:45px;margin:0}.triple .row p{font-size:25px;color:var(--dim);line-height:1.4}.triple .row .edge{font-size:25px;color:var(--blue);font-weight:800;text-align:right}.triple-foot{margin-top:40px;font-size:32px;font-weight:790}
-/* paid skill */
-.paid{margin-top:46px;display:grid;grid-template-columns:1fr .9fr;gap:65px}.chatbox{background:#f7f9ff;border:2px solid #c9d5f9;padding:31px;min-height:366px}.chatbox .name{font:800 24px var(--mono);display:flex;justify-content:space-between;border-bottom:1px solid #c9d5f9;padding-bottom:20px;color:var(--blue)}.bubble{font-size:23px;padding:20px 22px;line-height:1.45;margin-top:22px}.bubble.user{background:white;border-radius:10px 10px 10px 0;max-width:92%}.bubble.bot{border:1px solid #c6d6ee;border-radius:10px 10px 0 10px;margin-left:40px;background:#e9f2ff}.purchase{border:1px solid #b2c5ec;background:#fff;margin-top:17px;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}.purchase strong{font-size:35px;color:var(--blue)}.purchase span{font-size:20px}.paidsteps{border-top:2px solid var(--ink)}.paidstep{display:flex;align-items:flex-start;gap:20px;border-bottom:1px solid var(--line);padding:20px 0}.paidstep .circle{font:800 18px var(--mono);color:white;background:var(--blue);width:38px;height:38px;display:grid;place-items:center;border-radius:50%;flex-shrink:0}.paidstep b{font-size:26px}.paidstep p{font-size:20px;line-height:1.5;margin:6px 0 0;color:var(--dim)}.smallcap{font-size:17px;color:var(--soft);margin-top:24px;line-height:1.5}
-/* second-order */
-.branch{display:grid;grid-template-columns:.8fr 120px 1fr;align-items:center;gap:45px;margin-top:76px}.origin{padding:48px 42px;background:var(--blue);color:#fff}.origin .tag{font:700 18px var(--mono);opacity:.76}.origin h3{font-size:49px;margin:22px 0}.origin p{font-size:24px;line-height:1.5;opacity:.88}.arrow{font-size:82px;text-align:center;color:var(--blue)}.needrows{border-top:2px solid var(--ink)}.needrow{display:grid;grid-template-columns:80px 1fr;align-items:center;gap:18px;border-bottom:1px solid var(--line);padding:20px 0}.needrow .icon{font:750 23px var(--mono);color:var(--blue)}.needrow b{font-size:30px}.needrow p{font-size:21px;color:var(--dim);margin:6px 0 0}.branch-foot{margin-top:44px;font-size:31px;font-weight:770}
-/* facade */
-.facade{display:grid;grid-template-columns:1.33fr .67fr;gap:45px;margin-top:41px}.houses{border-top:2px solid var(--ink);padding-top:14px}.houses .house-heading{display:flex;justify-content:space-between;align-items:center;padding:14px 0;font:700 15px var(--mono);color:var(--soft)}.housepair{display:grid;grid-template-columns:1fr 1fr;gap:14px}.houseframe{background:#f0f3f5;padding:10px;position:relative}.houseframe svg{width:100%;height:260px;display:block}.houseframe .tag{display:inline-block;font:700 16px var(--mono);padding:9px 13px;background:#fff;position:absolute;left:20px;top:20px;z-index:1}.houseframe.after .tag{background:var(--blue);color:#fff}.facade-chooser{display:flex;align-items:center;gap:12px;margin-top:16px}.fbtn{background:#fff;border:1px solid #c9d4e4;border-radius:4px;cursor:pointer;font-size:19px;padding:11px 19px;color:var(--ink)}.fbtn[aria-pressed=true]{background:var(--blue);color:#fff;border-color:var(--blue)}.facade-chooser .hint{font-size:16px;color:var(--soft);margin-left:auto}.houseframe.after{--wall:#b9c4ce;--trim:#f3f5f7;--stone:#899aa6;--roof:#535f70}.houseframe.after[data-style=warm]{--wall:#e4d4b6;--trim:#f9f3e7;--stone:#b7a07a;--roof:#706553}.houseframe.after[data-style=dark]{--wall:#7e8990;--trim:#e7e7e5;--stone:#4d5b66;--roof:#303a43}.brandcase{border-left:3px solid var(--blue);padding-left:28px}.brandcase h3{font-size:34px;margin:0 0 24px;line-height:1.3}.brandcase .point{font-size:24px;padding:19px 0;border-bottom:1px solid var(--line);line-height:1.4}.brandcase .point b{color:var(--blue)}.brandcase .status{margin-top:25px;padding:15px 18px;background:#fff3e0;color:#86591c;font-size:19px;line-height:1.45}
-/* channels */
-.distribution{display:grid;grid-template-columns:.72fr 1fr;gap:75px;margin-top:68px}.warning{padding:38px 37px;background:#eff3ff;border-left:6px solid var(--blue)}.warning .big{font-size:68px;line-height:1.12;font-weight:830;letter-spacing:-2px}.warning .d{font-size:22px;line-height:1.58;color:var(--dim);margin-top:32px}.channels{border-top:2px solid var(--ink)}.channel{display:grid;grid-template-columns:100px 200px 1fr;align-items:center;gap:15px;border-bottom:1px solid var(--line);padding:23px 0}.channel span:first-child{font:800 22px var(--mono);color:var(--blue)}.channel b{font-size:29px}.channel p{font-size:21px;color:var(--dim)}.dist-note{margin-top:33px;font-size:22px;line-height:1.5;color:var(--dim)}
-/* tutor */
-.tutor{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;margin-top:43px}.tutorChat{background:#f9fbff;border:1px solid #cdd8ea;padding:25px 30px}.tutorChat .bar{display:flex;justify-content:space-between;font:750 17px var(--mono);border-bottom:1px solid #cdd8ea;padding-bottom:18px}.msg{max-width:88%;margin-top:18px;padding:16px 19px;background:#e7eeff;font-size:23px;line-height:1.4;border-radius:14px 14px 14px 0}.msg.you{margin-left:auto;background:#e8f6ed;border-radius:14px 14px 0 14px}.msg small{display:block;font:750 13px var(--mono);color:var(--soft);margin-bottom:8px}.tutor-right{border-top:2px solid var(--ink)}.tutorpt{padding:20px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:55px 1fr;gap:12px;align-items:start}.tutorpt .n{color:var(--blue);font:800 20px var(--mono)}.tutorpt b{font-size:28px}.tutorpt p{font-size:20px;margin:6px 0;color:var(--dim)}.tutor-note{margin-top:24px;font-size:19px;color:var(--soft);line-height:1.4}
-/* course */
-.bundle{display:grid;grid-template-columns:.91fr 150px 1.03fr;gap:42px;margin-top:75px;align-items:center}.bundle-side{padding:36px 38px;min-height:335px;border-top:3px solid var(--ink);background:var(--ivory)}.bundle-side.good{border-color:var(--blue);background:#f1f5ff}.bundle-side .cap{font:700 18px var(--mono);color:var(--soft)}.bundle-side h3{font-size:42px;margin:35px 0 20px}.bundle-side p{font-size:24px;line-height:1.5;color:var(--dim)}.bundle-plus{text-align:center;font-size:80px;font-weight:400;color:var(--blue)}.bundle-bottom{margin-top:42px;border-top:1px solid var(--line);padding-top:25px;font-size:27px}.bundle-bottom strong{color:var(--blue)}
-/* version */
-.gitwrap{display:grid;grid-template-columns:1fr .78fr;gap:75px;margin-top:61px}.terminal{background:#19283f;color:#fff;padding:30px 36px;box-shadow:15px 15px 0 #e4ecff}.terminal .file{font:800 23px var(--mono);color:#91b8ff;padding-bottom:17px;border-bottom:1px solid #60718a}.terminal .code{font:600 21px/1.9 var(--mono);margin-top:15px}.terminal .code .k{color:#8edaaf}.terminal .code .v{color:#a2c7ff}.gitlist{border-top:2px solid var(--ink)}.gititem{padding:21px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:50px 1fr;gap:14px}.gititem .n{font:800 21px var(--mono);color:var(--blue)}.gititem b{font-size:29px}.gititem p{font-size:20px;color:var(--dim);line-height:1.42;margin:8px 0 0}.gitfoot{margin-top:27px;font-size:20px;color:var(--dim);line-height:1.5}
-/* end */
-.end{background:linear-gradient(125deg,white 62%,#eff4ff 62%)}.end h2{font-size:94px;line-height:1.15;margin:127px 0 22px;letter-spacing:-4px}.end .tagline{font-size:31px;color:var(--dim);margin-top:25px}.end .steps{display:flex;gap:33px;margin-top:62px}.end .step{font-size:26px;border-top:3px solid var(--ink);width:290px;padding-top:22px;font-weight:780}.end .step b{color:var(--blue);font:700 19px var(--mono);display:block;margin-bottom:15px}.end .qa{position:absolute;right:130px;top:195px;border:2px solid var(--blue);width:310px;height:220px;padding:27px;display:flex;flex-direction:column;justify-content:center;background:#fff}.end .qa strong{font-size:66px;color:var(--blue);line-height:1}.end .qa p{font-size:24px;line-height:1.5;margin:0}.end .qa small{font-size:19px;color:var(--dim)}
-/* navigation lives OUTSIDE scaled stage */
-#hud{position:fixed;bottom:19px;right:22px;display:flex;align-items:center;gap:7px;z-index:20;background:#fff;border:1px solid #d7dfe8;box-shadow:0 7px 27px rgba(31,47,70,.13);border-radius:12px;padding:7px}#hud button{height:37px;min-width:37px;border:0;border-radius:7px;background:transparent;color:#35445b;cursor:pointer;font-size:17px}#hud button:hover{background:#edf2ff;color:var(--blue)}#hud .count{font:700 12px var(--mono);color:#5c6980;padding:0 8px}#hud .key{font-size:12px;color:#99a6b6}#progress{position:fixed;z-index:30;bottom:0;left:0;height:4px;background:var(--blue);transition:width .55s ease}
-#notes{position:fixed;z-index:15;top:16px;right:16px;bottom:82px;width:min(460px,42vw);background:#fff;box-shadow:0 9px 40px rgba(20,32,48,.22);border:1px solid var(--line);border-radius:14px;display:none;overflow:auto;padding:27px 27px 35px}#notes.open{display:block}#notes h3{font-size:23px;margin:0 0 10px}#notes p{font-size:16px;line-height:1.85;white-space:pre-wrap;color:#46536a}#notes .small{color:var(--blue);font:700 12px var(--mono);margin:4px 0 16px}
-#overview{position:fixed;z-index:28;inset:0;background:#eff2f7;overflow:auto;display:none;padding:45px max(32px,calc((100% - 1330px)/2))}#overview.open{display:block}#overview h2{font-size:35px;margin:0 0 26px}#grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.thumb{background:#fff;border:1px solid #dce3ee;cursor:pointer;text-align:left;border-radius:9px;padding:18px;min-height:134px;box-shadow:0 3px 13px rgba(20,40,60,.05)}.thumb:hover,.thumb.current{border:2px solid var(--blue);padding:17px}.thumb .n{font:800 15px var(--mono);color:var(--blue)}.thumb .t{font-size:20px;font-weight:760;line-height:1.36;margin-top:17px}.ov-help{color:#66768b;font-size:16px;margin:20px 0}
-@media(max-width:800px){#hud{right:8px;bottom:8px;padding:3px}#hud .key{display:none}#notes{width:min(94vw,460px);right:3vw}#grid{grid-template-columns:repeat(2,1fr)}#overview{padding:25px}}
-@media(prefers-reduced-motion:reduce){.slide,.rise{animation:none!important;transition:none!important}.active .rise{opacity:1;transform:none}}
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width,initial-scale=1,viewport-fit=cover"
+        />
+        <meta name="theme-color" content="#f4f6f9" />
+        <title>AI Agent 技能开发与变现 · 统一标题版</title>
+        <style>
+            :root {
+                --ink: #172236;
+                --dim: #607087;
+                --soft: #8995a5;
+                --blue: #2859e4;
+                --sky: #eaf0ff;
+                --line: #dbe2ea;
+                --ivory: #f6f8fb;
+                --mint: #e3f5ef;
+                --green: #17765d;
+                --apricot: #fff0dc;
+                --serif: "Songti SC", "Noto Serif CJK SC", serif;
+                --sans:
+                    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+                    "Noto Sans CJK SC", system-ui, sans-serif;
+                --mono:
+                    "SFMono-Regular", "JetBrains Mono", "Consolas", monospace;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            html,
+            body {
+                height: 100%;
+                margin: 0;
+                overflow: hidden;
+            }
+            body {
+                font-family: var(--sans);
+                color: var(--ink);
+                background: #e3e7ee;
+                -webkit-font-smoothing: antialiased;
+            }
+            button {
+                font: inherit;
+            }
+            button:focus-visible {
+                outline: 3px solid #77a0ff;
+                outline-offset: 3px;
+            }
+            #viewport {
+                position: fixed;
+                inset: 0;
+                overflow: hidden;
+            }
+            #deck {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                width: 1600px;
+                height: 900px;
+                transform-origin: center center;
+                background: white;
+                box-shadow: 0 28px 100px rgba(15, 33, 65, 0.18);
+                overflow: hidden;
+            }
+            .slide {
+                position: absolute;
+                inset: 0;
+                visibility: hidden;
+                opacity: 0;
+                pointer-events: none;
+                background: #fff;
+                padding: 61px 90px 60px;
+                overflow: hidden;
+            }
+            .slide.active {
+                visibility: visible;
+                opacity: 1;
+                pointer-events: auto;
+                z-index: 3;
+            }
+            .slide.leaving {
+                visibility: visible;
+                opacity: 1;
+                pointer-events: none;
+                z-index: 2;
+            }
+            .slide.in-next {
+                animation: inNext 0.7s cubic-bezier(0.17, 0.84, 0.22, 1) both;
+            }
+            .slide.in-prev {
+                animation: inPrev 0.7s cubic-bezier(0.17, 0.84, 0.22, 1) both;
+            }
+            .slide.out-next {
+                animation: outNext 0.57s ease both;
+            }
+            .slide.out-prev {
+                animation: outPrev 0.57s ease both;
+            }
+            @keyframes inNext {
+                from {
+                    opacity: 0.65;
+                    clip-path: inset(0 0 0 100%);
+                    transform: translateX(65px);
+                }
+                to {
+                    opacity: 1;
+                    clip-path: inset(0);
+                    transform: none;
+                }
+            }
+            @keyframes inPrev {
+                from {
+                    opacity: 0.65;
+                    clip-path: inset(0 100% 0 0);
+                    transform: translateX(-65px);
+                }
+                to {
+                    opacity: 1;
+                    clip-path: inset(0);
+                    transform: none;
+                }
+            }
+            @keyframes outNext {
+                from {
+                    opacity: 1;
+                    transform: none;
+                }
+                to {
+                    opacity: 0.16;
+                    transform: translateX(-75px);
+                }
+            }
+            @keyframes outPrev {
+                from {
+                    opacity: 1;
+                    transform: none;
+                }
+                to {
+                    opacity: 0.16;
+                    transform: translateX(75px);
+                }
+            }
+            .rise {
+                opacity: 0;
+                transform: translateY(24px);
+                transition:
+                    transform 0.7s cubic-bezier(0.18, 0.78, 0.24, 1),
+                    opacity 0.7s ease;
+                transition-delay: calc(130ms + var(--d, 0) * 100ms);
+            }
+            .active .rise {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .top {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-top: 14px;
+                border-top: 2px solid var(--ink);
+            }
+            .top .left,
+            .top .right {
+                font: 700 16px var(--mono);
+                letter-spacing: 0.055em;
+            }
+            .top .left b {
+                color: var(--blue);
+            }
+            .top .right {
+                color: var(--soft);
+            }
+            .eyebrow {
+                font: 750 17px var(--mono);
+                color: var(--blue);
+                letter-spacing: 0.07em;
+            }
+            .header {
+                margin-top: 35px;
+            }
+            .h2 {
+                margin: 13px 0 10px;
+                font-size: 66px;
+                line-height: 1.16;
+                font-weight: 820;
+                letter-spacing: -2.4px;
+            }
+            .h2.xl {
+                font-size: 76px;
+            }
+            .h2.tight {
+                font-size: 60px;
+            }
+            .accent {
+                color: var(--blue);
+            }
+            .lead {
+                font-size: 24px;
+                color: var(--dim);
+                line-height: 1.52;
+                margin: 12px 0 0;
+            }
+            .under {
+                position: absolute;
+                left: 90px;
+                right: 90px;
+                bottom: 34px;
+                border-top: 1px solid var(--line);
+                padding-top: 11px;
+                display: flex;
+                justify-content: space-between;
+                color: var(--soft);
+                font: 700 15px var(--mono);
+                letter-spacing: 0.06em;
+            }
+            .under span:last-child {
+                color: var(--ink);
+            }
+            .tiny {
+                font-size: 17px;
+                color: var(--dim);
+                line-height: 1.6;
+            }
+            .blue-line {
+                height: 4px;
+                width: 78px;
+                background: var(--blue);
+            }
+            .label {
+                font: 750 16px var(--mono);
+                color: var(--soft);
+                letter-spacing: 0.07em;
+            }
+            .rule {
+                height: 1px;
+                background: var(--line);
+            }
+            .shell {
+                margin-top: 46px;
+            }
+            .sidenum {
+                font: 750 19px var(--mono);
+                color: var(--blue);
+            }
+            /* opening editorial */
+            .cover {
+                background: linear-gradient(115deg, #ffffff 67%, #f5f8ff 67%);
+            }
+            .cover .mast {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font: 750 18px var(--mono);
+                letter-spacing: 0.07em;
+            }
+            .cover .mast span:last-child {
+                color: var(--soft);
+            }
+            .cover h1 {
+                font-size: 108px;
+                line-height: 1.02;
+                letter-spacing: -5px;
+                margin: 136px 0 0;
+                font-weight: 850;
+                max-width: 1030px;
+            }
+            .cover h1 strong {
+                color: var(--blue);
+            }
+            .cover .subtitle {
+                font-size: 39px;
+                font-weight: 720;
+                margin-top: 37px;
+            }
+            .cover .desc {
+                font-size: 24px;
+                line-height: 1.55;
+                color: var(--dim);
+                margin-top: 20px;
+            }
+            .cover .cover-right {
+                position: absolute;
+                right: 105px;
+                top: 205px;
+                width: 300px;
+                height: 360px;
+                border: 2px solid var(--blue);
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                padding: 25px 19px;
+            }
+            .cover .cover-right b {
+                font-size: 31px;
+                line-height: 1.15;
+            }
+            .cover .cover-right small {
+                font: 700 15px var(--mono);
+                color: var(--blue);
+            }
+            .cover .rings {
+                position: absolute;
+                width: 450px;
+                height: 450px;
+                border: 1px solid #cad9ff;
+                border-radius: 50%;
+                right: -210px;
+                bottom: -225px;
+            }
+            .cover .rings:before,
+            .cover .rings:after {
+                content: "";
+                position: absolute;
+                border: 1px solid #cad9ff;
+                border-radius: 50%;
+                inset: 70px;
+            }
+            .cover .rings:after {
+                inset: 145px;
+            }
+            .cover .bottomline {
+                position: absolute;
+                bottom: 52px;
+                left: 90px;
+                width: 1000px;
+                font: 650 18px var(--mono);
+                color: var(--soft);
+                border-top: 1px solid var(--line);
+                padding-top: 18px;
+            }
+            /* motivation */
+            .barrier {
+                display: grid;
+                grid-template-columns: 1fr 90px 1fr;
+                gap: 28px;
+                margin-top: 70px;
+                align-items: stretch;
+            }
+            .barrier-side {
+                border-top: 3px solid var(--ink);
+                padding-top: 23px;
+            }
+            .barrier-side.good {
+                border-color: var(--blue);
+                background: linear-gradient(#f6f9ff, white);
+            }
+            .barrier-side h3 {
+                font-size: 36px;
+                margin: 4px 0 20px;
+            }
+            .barrier-side p {
+                font-size: 25px;
+                line-height: 1.53;
+                color: var(--dim);
+                margin: 0;
+            }
+            .barrier-side .item {
+                border-top: 1px solid var(--line);
+                padding: 21px 0;
+                display: flex;
+                justify-content: space-between;
+                font-size: 24px;
+                font-weight: 650;
+            }
+            .barrier-side .item span:last-child {
+                color: var(--soft);
+                font-size: 19px;
+            }
+            .barrier-center {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--blue);
+                font-size: 55px;
+            }
+            .barrier-take {
+                margin-top: 34px;
+                border-left: 5px solid var(--blue);
+                padding-left: 22px;
+                font-size: 30px;
+                font-weight: 730;
+            }
+            /* lifecycle */
+            .timeline {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 0;
+                margin-top: 71px;
+                border-top: 3px solid var(--ink);
+                border-bottom: 1px solid var(--ink);
+            }
+            .timeline .step {
+                position: relative;
+                padding: 28px 35px 48px 0;
+                min-height: 285px;
+            }
+            .timeline .step + .step {
+                border-left: 1px solid var(--line);
+                padding-left: 35px;
+            }
+            .timeline .step .n {
+                font: 800 65px var(--mono);
+                color: #d7dfea;
+                line-height: 1;
+            }
+            .timeline .step:last-child .n {
+                color: var(--blue);
+            }
+            .timeline .step h3 {
+                font-size: 34px;
+                margin: 27px 0 17px;
+            }
+            .timeline .step p {
+                font-size: 22px;
+                color: var(--dim);
+                line-height: 1.48;
+            }
+            .timeline .step .arr {
+                position: absolute;
+                top: 45px;
+                right: 26px;
+                color: var(--blue);
+                font-size: 42px;
+            }
+            .skillcode {
+                display: flex;
+                gap: 30px;
+                align-items: center;
+                margin-top: 45px;
+                background: var(--ivory);
+                padding: 25px 31px;
+                border-left: 5px solid var(--blue);
+            }
+            .skillcode .f {
+                font: 800 25px var(--mono);
+                color: var(--blue);
+                white-space: nowrap;
+            }
+            .skillcode .txt {
+                font-size: 25px;
+                line-height: 1.45;
+            }
+            .skillcode .note {
+                color: var(--dim);
+                font-size: 19px;
+            }
+            /* models */
+            .triple {
+                margin-top: 73px;
+                border-top: 2px solid var(--ink);
+            }
+            .triple .row {
+                display: grid;
+                grid-template-columns: 120px 410px 1fr 150px;
+                gap: 12px;
+                align-items: center;
+                min-height: 148px;
+                border-bottom: 1px solid var(--line);
+            }
+            .triple .row .num {
+                font: 800 27px var(--mono);
+                color: var(--blue);
+            }
+            .triple .row h3 {
+                font-size: 45px;
+                margin: 0;
+            }
+            .triple .row p {
+                font-size: 25px;
+                color: var(--dim);
+                line-height: 1.4;
+            }
+            .triple .row .edge {
+                font-size: 25px;
+                color: var(--blue);
+                font-weight: 800;
+                text-align: right;
+            }
+            .triple-foot {
+                margin-top: 40px;
+                font-size: 32px;
+                font-weight: 790;
+            }
+            /* paid skill */
+            .paid {
+                margin-top: 46px;
+                display: grid;
+                grid-template-columns: 1fr 0.9fr;
+                gap: 65px;
+            }
+            .chatbox {
+                background: #f7f9ff;
+                border: 2px solid #c9d5f9;
+                padding: 31px;
+                min-height: 366px;
+            }
+            .chatbox .name {
+                font: 800 24px var(--mono);
+                display: flex;
+                justify-content: space-between;
+                border-bottom: 1px solid #c9d5f9;
+                padding-bottom: 20px;
+                color: var(--blue);
+            }
+            .bubble {
+                font-size: 23px;
+                padding: 20px 22px;
+                line-height: 1.45;
+                margin-top: 22px;
+            }
+            .bubble.user {
+                background: white;
+                border-radius: 10px 10px 10px 0;
+                max-width: 92%;
+            }
+            .bubble.bot {
+                border: 1px solid #c6d6ee;
+                border-radius: 10px 10px 0 10px;
+                margin-left: 40px;
+                background: #e9f2ff;
+            }
+            .purchase {
+                border: 1px solid #b2c5ec;
+                background: #fff;
+                margin-top: 17px;
+                padding: 14px 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .purchase strong {
+                font-size: 35px;
+                color: var(--blue);
+            }
+            .purchase span {
+                font-size: 20px;
+            }
+            .paidsteps {
+                border-top: 2px solid var(--ink);
+            }
+            .paidstep {
+                display: flex;
+                align-items: flex-start;
+                gap: 20px;
+                border-bottom: 1px solid var(--line);
+                padding: 20px 0;
+            }
+            .paidstep .circle {
+                font: 800 18px var(--mono);
+                color: white;
+                background: var(--blue);
+                width: 38px;
+                height: 38px;
+                display: grid;
+                place-items: center;
+                border-radius: 50%;
+                flex-shrink: 0;
+            }
+            .paidstep b {
+                font-size: 26px;
+            }
+            .paidstep p {
+                font-size: 20px;
+                line-height: 1.5;
+                margin: 6px 0 0;
+                color: var(--dim);
+            }
+            .smallcap {
+                font-size: 17px;
+                color: var(--soft);
+                margin-top: 24px;
+                line-height: 1.5;
+            }
+            /* second-order */
+            .branch {
+                display: grid;
+                grid-template-columns: 0.8fr 120px 1fr;
+                align-items: center;
+                gap: 45px;
+                margin-top: 76px;
+            }
+            .origin {
+                padding: 48px 42px;
+                background: var(--blue);
+                color: #fff;
+            }
+            .origin .tag {
+                font: 700 18px var(--mono);
+                opacity: 0.76;
+            }
+            .origin h3 {
+                font-size: 49px;
+                margin: 22px 0;
+            }
+            .origin p {
+                font-size: 24px;
+                line-height: 1.5;
+                opacity: 0.88;
+            }
+            .arrow {
+                font-size: 82px;
+                text-align: center;
+                color: var(--blue);
+            }
+            .needrows {
+                border-top: 2px solid var(--ink);
+            }
+            .needrow {
+                display: grid;
+                grid-template-columns: 80px 1fr;
+                align-items: center;
+                gap: 18px;
+                border-bottom: 1px solid var(--line);
+                padding: 20px 0;
+            }
+            .needrow .icon {
+                font: 750 23px var(--mono);
+                color: var(--blue);
+            }
+            .needrow b {
+                font-size: 30px;
+            }
+            .needrow p {
+                font-size: 21px;
+                color: var(--dim);
+                margin: 6px 0 0;
+            }
+            .branch-foot {
+                margin-top: 44px;
+                font-size: 31px;
+                font-weight: 770;
+            }
+            /* facade */
+            .facade {
+                display: grid;
+                grid-template-columns: 1.33fr 0.67fr;
+                gap: 45px;
+                margin-top: 41px;
+            }
+            .houses {
+                border-top: 2px solid var(--ink);
+                padding-top: 14px;
+            }
+            .houses .house-heading {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 14px 0;
+                font: 700 15px var(--mono);
+                color: var(--soft);
+            }
+            .housepair {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+            }
+            .houseframe {
+                background: #f0f3f5;
+                padding: 10px;
+                position: relative;
+            }
+            .houseframe svg {
+                width: 100%;
+                height: 260px;
+                display: block;
+            }
+            .houseframe .tag {
+                display: inline-block;
+                font: 700 16px var(--mono);
+                padding: 9px 13px;
+                background: #fff;
+                position: absolute;
+                left: 20px;
+                top: 20px;
+                z-index: 1;
+            }
+            .houseframe.after .tag {
+                background: var(--blue);
+                color: #fff;
+            }
+            .facade-chooser {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                margin-top: 16px;
+            }
+            .fbtn {
+                background: #fff;
+                border: 1px solid #c9d4e4;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 19px;
+                padding: 11px 19px;
+                color: var(--ink);
+            }
+            .fbtn[aria-pressed="true"] {
+                background: var(--blue);
+                color: #fff;
+                border-color: var(--blue);
+            }
+            .facade-chooser .hint {
+                font-size: 16px;
+                color: var(--soft);
+                margin-left: auto;
+            }
+            .houseframe.after {
+                --wall: #b9c4ce;
+                --trim: #f3f5f7;
+                --stone: #899aa6;
+                --roof: #535f70;
+            }
+            .houseframe.after[data-style="warm"] {
+                --wall: #e4d4b6;
+                --trim: #f9f3e7;
+                --stone: #b7a07a;
+                --roof: #706553;
+            }
+            .houseframe.after[data-style="dark"] {
+                --wall: #7e8990;
+                --trim: #e7e7e5;
+                --stone: #4d5b66;
+                --roof: #303a43;
+            }
+            .brandcase {
+                border-left: 3px solid var(--blue);
+                padding-left: 28px;
+            }
+            .brandcase h3 {
+                font-size: 34px;
+                margin: 0 0 24px;
+                line-height: 1.3;
+            }
+            .brandcase .point {
+                font-size: 24px;
+                padding: 19px 0;
+                border-bottom: 1px solid var(--line);
+                line-height: 1.4;
+            }
+            .brandcase .point b {
+                color: var(--blue);
+            }
+            .brandcase .status {
+                margin-top: 25px;
+                padding: 15px 18px;
+                background: #fff3e0;
+                color: #86591c;
+                font-size: 19px;
+                line-height: 1.45;
+            }
+            /* channels */
+            .distribution {
+                display: grid;
+                grid-template-columns: 0.72fr 1fr;
+                gap: 75px;
+                margin-top: 68px;
+            }
+            .warning {
+                padding: 38px 37px;
+                background: #eff3ff;
+                border-left: 6px solid var(--blue);
+            }
+            .warning .big {
+                font-size: 68px;
+                line-height: 1.12;
+                font-weight: 830;
+                letter-spacing: -2px;
+            }
+            .warning .d {
+                font-size: 22px;
+                line-height: 1.58;
+                color: var(--dim);
+                margin-top: 32px;
+            }
+            .channels {
+                border-top: 2px solid var(--ink);
+            }
+            .channel {
+                display: grid;
+                grid-template-columns: 100px 200px 1fr;
+                align-items: center;
+                gap: 15px;
+                border-bottom: 1px solid var(--line);
+                padding: 23px 0;
+            }
+            .channel span:first-child {
+                font: 800 22px var(--mono);
+                color: var(--blue);
+            }
+            .channel b {
+                font-size: 29px;
+            }
+            .channel p {
+                font-size: 21px;
+                color: var(--dim);
+            }
+            .dist-note {
+                margin-top: 33px;
+                font-size: 22px;
+                line-height: 1.5;
+                color: var(--dim);
+            }
+            /* tutor */
+            .tutor {
+                display: grid;
+                grid-template-columns: 1.1fr 0.9fr;
+                gap: 70px;
+                margin-top: 43px;
+            }
+            .tutorChat {
+                background: #f9fbff;
+                border: 1px solid #cdd8ea;
+                padding: 25px 30px;
+            }
+            .tutorChat .bar {
+                display: flex;
+                justify-content: space-between;
+                font: 750 17px var(--mono);
+                border-bottom: 1px solid #cdd8ea;
+                padding-bottom: 18px;
+            }
+            .msg {
+                max-width: 88%;
+                margin-top: 18px;
+                padding: 16px 19px;
+                background: #e7eeff;
+                font-size: 23px;
+                line-height: 1.4;
+                border-radius: 14px 14px 14px 0;
+            }
+            .msg.you {
+                margin-left: auto;
+                background: #e8f6ed;
+                border-radius: 14px 14px 0 14px;
+            }
+            .msg small {
+                display: block;
+                font: 750 13px var(--mono);
+                color: var(--soft);
+                margin-bottom: 8px;
+            }
+            .tutor-right {
+                border-top: 2px solid var(--ink);
+            }
+            .tutorpt {
+                padding: 20px 0;
+                border-bottom: 1px solid var(--line);
+                display: grid;
+                grid-template-columns: 55px 1fr;
+                gap: 12px;
+                align-items: start;
+            }
+            .tutorpt .n {
+                color: var(--blue);
+                font: 800 20px var(--mono);
+            }
+            .tutorpt b {
+                font-size: 28px;
+            }
+            .tutorpt p {
+                font-size: 20px;
+                margin: 6px 0;
+                color: var(--dim);
+            }
+            .tutor-note {
+                margin-top: 24px;
+                font-size: 19px;
+                color: var(--soft);
+                line-height: 1.4;
+            }
+            /* course */
+            .bundle {
+                display: grid;
+                grid-template-columns: 0.91fr 150px 1.03fr;
+                gap: 42px;
+                margin-top: 75px;
+                align-items: center;
+            }
+            .bundle-side {
+                padding: 36px 38px;
+                min-height: 335px;
+                border-top: 3px solid var(--ink);
+                background: var(--ivory);
+            }
+            .bundle-side.good {
+                border-color: var(--blue);
+                background: #f1f5ff;
+            }
+            .bundle-side .cap {
+                font: 700 18px var(--mono);
+                color: var(--soft);
+            }
+            .bundle-side h3 {
+                font-size: 42px;
+                margin: 35px 0 20px;
+            }
+            .bundle-side p {
+                font-size: 24px;
+                line-height: 1.5;
+                color: var(--dim);
+            }
+            .bundle-plus {
+                text-align: center;
+                font-size: 80px;
+                font-weight: 400;
+                color: var(--blue);
+            }
+            .bundle-bottom {
+                margin-top: 42px;
+                border-top: 1px solid var(--line);
+                padding-top: 25px;
+                font-size: 27px;
+            }
+            .bundle-bottom strong {
+                color: var(--blue);
+            }
+            /* version */
+            .gitwrap {
+                display: grid;
+                grid-template-columns: 1fr 0.78fr;
+                gap: 75px;
+                margin-top: 61px;
+            }
+            .terminal {
+                background: #19283f;
+                color: #fff;
+                padding: 30px 36px;
+                box-shadow: 15px 15px 0 #e4ecff;
+            }
+            .terminal .file {
+                font: 800 23px var(--mono);
+                color: #91b8ff;
+                padding-bottom: 17px;
+                border-bottom: 1px solid #60718a;
+            }
+            .terminal .code {
+                font: 600 21px/1.9 var(--mono);
+                margin-top: 15px;
+            }
+            .terminal .code .k {
+                color: #8edaaf;
+            }
+            .terminal .code .v {
+                color: #a2c7ff;
+            }
+            .gitlist {
+                border-top: 2px solid var(--ink);
+            }
+            .gititem {
+                padding: 21px 0;
+                border-bottom: 1px solid var(--line);
+                display: grid;
+                grid-template-columns: 50px 1fr;
+                gap: 14px;
+            }
+            .gititem .n {
+                font: 800 21px var(--mono);
+                color: var(--blue);
+            }
+            .gititem b {
+                font-size: 29px;
+            }
+            .gititem p {
+                font-size: 20px;
+                color: var(--dim);
+                line-height: 1.42;
+                margin: 8px 0 0;
+            }
+            .gitfoot {
+                margin-top: 27px;
+                font-size: 20px;
+                color: var(--dim);
+                line-height: 1.5;
+            }
+            /* end */
+            .end {
+                background: linear-gradient(125deg, white 62%, #eff4ff 62%);
+            }
+            .end h2 {
+                font-size: 94px;
+                line-height: 1.15;
+                margin: 127px 0 22px;
+                letter-spacing: -4px;
+            }
+            .end .tagline {
+                font-size: 31px;
+                color: var(--dim);
+                margin-top: 25px;
+            }
+            .end .steps {
+                display: flex;
+                gap: 33px;
+                margin-top: 62px;
+            }
+            .end .step {
+                font-size: 26px;
+                border-top: 3px solid var(--ink);
+                width: 290px;
+                padding-top: 22px;
+                font-weight: 780;
+            }
+            .end .step b {
+                color: var(--blue);
+                font: 700 19px var(--mono);
+                display: block;
+                margin-bottom: 15px;
+            }
+            .end .qa {
+                position: absolute;
+                right: 130px;
+                top: 195px;
+                border: 2px solid var(--blue);
+                width: 310px;
+                height: 220px;
+                padding: 27px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                background: #fff;
+            }
+            .end .qa strong {
+                font-size: 66px;
+                color: var(--blue);
+                line-height: 1;
+            }
+            .end .qa p {
+                font-size: 24px;
+                line-height: 1.5;
+                margin: 0;
+            }
+            .end .qa small {
+                font-size: 19px;
+                color: var(--dim);
+            }
+            /* navigation lives OUTSIDE scaled stage */
+            #hud {
+                position: fixed;
+                bottom: 19px;
+                right: 22px;
+                display: flex;
+                align-items: center;
+                gap: 7px;
+                z-index: 20;
+                background: #fff;
+                border: 1px solid #d7dfe8;
+                box-shadow: 0 7px 27px rgba(31, 47, 70, 0.13);
+                border-radius: 12px;
+                padding: 7px;
+            }
+            #hud button {
+                height: 37px;
+                min-width: 37px;
+                border: 0;
+                border-radius: 7px;
+                background: transparent;
+                color: #35445b;
+                cursor: pointer;
+                font-size: 17px;
+            }
+            #hud button:hover {
+                background: #edf2ff;
+                color: var(--blue);
+            }
+            #hud .count {
+                font: 700 12px var(--mono);
+                color: #5c6980;
+                padding: 0 8px;
+            }
+            #hud .key {
+                font-size: 12px;
+                color: #99a6b6;
+            }
+            #progress {
+                position: fixed;
+                z-index: 30;
+                bottom: 0;
+                left: 0;
+                height: 4px;
+                background: var(--blue);
+                transition: width 0.55s ease;
+            }
+            #notes {
+                position: fixed;
+                z-index: 15;
+                top: 16px;
+                right: 16px;
+                bottom: 82px;
+                width: min(460px, 42vw);
+                background: #fff;
+                box-shadow: 0 9px 40px rgba(20, 32, 48, 0.22);
+                border: 1px solid var(--line);
+                border-radius: 14px;
+                display: none;
+                overflow: auto;
+                padding: 27px 27px 35px;
+            }
+            #notes.open {
+                display: block;
+            }
+            #notes h3 {
+                font-size: 23px;
+                margin: 0 0 10px;
+            }
+            #notes p {
+                font-size: 16px;
+                line-height: 1.85;
+                white-space: pre-wrap;
+                color: #46536a;
+            }
+            #notes .small {
+                color: var(--blue);
+                font: 700 12px var(--mono);
+                margin: 4px 0 16px;
+            }
+            #overview {
+                position: fixed;
+                z-index: 28;
+                inset: 0;
+                background: #eff2f7;
+                overflow: auto;
+                display: none;
+                padding: 45px max(32px, calc((100% - 1330px) / 2));
+            }
+            #overview.open {
+                display: block;
+            }
+            #overview h2 {
+                font-size: 35px;
+                margin: 0 0 26px;
+            }
+            #grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 18px;
+            }
+            .thumb {
+                background: #fff;
+                border: 1px solid #dce3ee;
+                cursor: pointer;
+                text-align: left;
+                border-radius: 9px;
+                padding: 18px;
+                min-height: 134px;
+                box-shadow: 0 3px 13px rgba(20, 40, 60, 0.05);
+            }
+            .thumb:hover,
+            .thumb.current {
+                border: 2px solid var(--blue);
+                padding: 17px;
+            }
+            .thumb .n {
+                font: 800 15px var(--mono);
+                color: var(--blue);
+            }
+            .thumb .t {
+                font-size: 20px;
+                font-weight: 760;
+                line-height: 1.36;
+                margin-top: 17px;
+            }
+            .ov-help {
+                color: #66768b;
+                font-size: 16px;
+                margin: 20px 0;
+            }
+            @media (max-width: 800px) {
+                #hud {
+                    right: 8px;
+                    bottom: 8px;
+                    padding: 3px;
+                }
+                #hud .key {
+                    display: none;
+                }
+                #notes {
+                    width: min(94vw, 460px);
+                    right: 3vw;
+                }
+                #grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                #overview {
+                    padding: 25px;
+                }
+            }
+            @media (prefers-reduced-motion: reduce) {
+                .slide,
+                .rise {
+                    animation: none !important;
+                    transition: none !important;
+                }
+                .active .rise {
+                    opacity: 1;
+                    transform: none;
+                }
+            }
 
-/* Final layout pass: preserve dedicated footer whitespace at 1600x900. */
-.timeline{margin-top:38px}.timeline .step{min-height:255px;padding-bottom:18px}.timeline .step h3{margin:17px 0 12px}.skillcode{margin-top:24px;padding:18px 26px}.skillcode .txt{font-size:23px}.skillcode .note{font-size:18px}
-.triple{margin-top:49px}.triple .row{min-height:124px}.triple .row h3{font-size:42px}.triple .row p{font-size:23px}.triple-foot{margin-top:21px;font-size:30px}
-.branch{margin-top:40px}.origin{padding:29px 30px}.origin h3{font-size:45px;margin:14px 0}.origin p{font-size:22px}.needrow{padding:13px 0}.needrow b{font-size:28px}.needrow p{font-size:19px;margin:5px 0 0}.branch-foot{margin-top:21px;font-size:28px}
-.bundle{margin-top:40px}.bundle-bottom{margin-top:21px;padding-top:12px;font-size:25px}
-.gitwrap{margin-top:35px}.terminal{padding:22px 30px}.terminal .code{font:600 19px/1.62 var(--mono);margin-top:10px}.terminal .file{padding-bottom:13px;font-size:21px}.gititem{padding:15px 0}.gititem b{font-size:27px}.gititem p{font-size:19px;margin:5px 0 0}.gitfoot{margin-top:13px;font-size:18px}
-</style>
-</head>
-<body>
-<div id="viewport"><main id="deck" aria-label="AI Agent 技能开发与变现分享演示文稿">
-<section class="slide cover active" data-title="AI 技能的商业化实践">
-  <h1 class="rise" style="--d:1">Skill<br><span style="color:var(--blue)">商业化实践</span></h1>
-  <div class="subtitle rise" style="--d:2">Agent技能的开发与变现路径</div>
-  <div class="desc rise" style="--d:3">早期阶段  ｜ 垂直需求 ｜ 商业驱动</div>
-  <div class="cover-right rise" style="--d:4">技能的商业价值<div><b>直接变现</b></div><div><b>品牌宣传</b></div><div><b>长期连接</b></div></div>
-  <!--<div class="rings" aria-hidden="true"></div><div class="bottomline">AGENT SKILLS ARE NOT ONLY TOOLS. THEY CAN BECOME BUSINESS ASSETS.</div>-->
-</section>
-<section class="slide" data-title="学习 AI，从动手开始">
- <div class="top"><div class="left"><b>01</b></div></div>
- <div class="header rise"><h2 class="h2">学AI，<span class="accent">不如用AI</span></h2><p class="lead">AI时代最好的学习方法是直接开干，但是...</p></div>
- <div class="barrier rise" style="--d:2"><div class="barrier-side"><h3>改造已有工作</h3><div class="item"><span>部门协作</span><span>AI生成的东西不好改</span></div><div class="item"><span>标准不符合</span><span>不达预期就废了</span></div><div class="item"><span>改变习惯</span><span>需要共同配合</span></div></div><div class="barrier-center">→</div><div class="barrier-side good"><h3>从零做一个小产品</h3><div class="item"><span>需求更聚焦</span><span>一个明确问题</span></div><div class="item"><span>反馈更及时</span><span>马上验证效果</span></div><div class="item"><span>拥有自主权</span><span>自己决定迭代</span></div></div></div>
- <div class="barrier-take rise" style="--d:3">先用 AI 创造一个新东西，再逐步把经验带回工作中。</div>
- <div class="under"><span>FROM CONSUMPTION TO CREATION</span><span>02 / 11</span></div>
-</section>
-<section class="slide" data-title="一个技能，三种价值">
- <div class="top"><div class="left"><b>02</b></div></div>
- <div class="header rise"><h2 class="h2">一个技能，<span class="accent">三种价值</span></h2><p class="lead">做得出来只是第一步。要持续迭代，需要明确它能带来什么价值。</p></div>
- <div class="triple rise" style="--d:2"><div class="row"><div class="num">01</div><h3>直接付费</h3><p>按次、套餐、订阅，为完成具体任务收费。</p><div class="edge">收入</div></div><div class="row"><div class="num">02</div><h3>品牌宣传</h3><p>让用户体验自己的产品、风格和专业能力。</p><div class="edge">流量</div></div><div class="row"><div class="num">03</div><h3>长期联系</h3><p>建立真实信任，承接咨询与持续服务。</p><div class="edge">客户</div></div></div>
- <div class="triple-foot rise" style="--d:3">不需要三选一。<span class="accent">它们可以组合起来。</span></div>
- <div class="under"><span>REVENUE · BRAND · RELATIONSHIP</span><span>03 / 11</span></div>
-</section>
-<section class="slide" data-title="技能变现：让能力产生收入">
- <div class="top"><div class="left"><b>03</b></div></div>
- <div class="header rise"><h2 class="h2 tight">技能变现：<span class="accent">让能力产生收入</span></h2><p class="lead">临时体验免费；达到一定次数后，再为实际需要充值。</p></div>
- <div class="paid"><div class="chatbox rise" style="--d:2"><div class="bubble user">帮我保存这个我有权下载的视频。</div><div class="bubble bot">已解析链接，可以开始下载。<br>本月免费额度剩余：0 次。</div><div class="purchase"><span>继续使用 · 充值示例</span><strong>¥ 9.9</strong></div></div><div class="paidsteps rise" style="--d:3"><div class="paidstep"><span class="circle">1</span><div><b>提供即时价值</b><p>解决 YouTube、抖音、小红书等来源的合规下载需求。</p></div></div><div class="paidstep"><span class="circle">2</span><div><b>低门槛试用</b><p>免费次数让用户确认“它真的能解决问题”。</p></div></div><div class="paidstep"><span class="circle">3</span><div><b>按需付费</b><p>高频用户自愿购买次数或使用额度。</p></div></div></div></div>
- <div class="smallcap rise" style="--d:4">¥9.9 为演讲示例，不代表已上线价格。下载须符合内容授权与平台条款。</div>
- <div class="under"><span>A SMALL UTILITY CAN BECOME A SMALL BUSINESS</span><span>04 / 11</span></div>
-</section>
-<section class="slide" data-title="需求延伸：从工具走向生意">
- <div class="top"><div class="left"><b>04</b></div></div>
- <div class="header rise"><h2 class="h2">需求延伸：<span class="accent">从工具走向生意</span></h2><p class="lead">同一批内容创作者和经营者，可能还需要从素材到内容生产的一整套服务。</p></div>
- <div class="branch"><div class="origin rise" style="--d:2"><h3>视频下载<br>Skill</h3><p>通过一个低门槛工具，聚集有真实内容处理需求的用户。</p></div><div class="arrow rise" style="--d:3">→</div><div class="needrows rise" style="--d:4"><div class="needrow"><span class="icon">A1</span><div><b>分析报表</b><p>视频数据整理、效果复盘</p></div></div><div class="needrow"><span class="icon">A2</span><div><b>内容生产</b><p>自动文案、选题、视频生成</p></div></div><div class="needrow"><span class="icon">A3</span><div><b>长期业务</b><p>社群、数字人、定制自动化</p></div></div></div></div>
- <div class="branch-foot rise" style="--d:5">Skill 收入之外，更重要的是：<span class="accent">你开始知道用户真正需要什么。</span></div>
- <div class="under"><span>FROM A SINGLE TOOL TO A PRODUCT ECOSYSTEM</span><span>05 / 11</span></div>
-</section>
-<section class="slide" data-title="品牌营销：让产品自己说话">
- <div class="top"><div class="left"><b>05</b></div></div>
- <div class="header rise"><h2 class="h2 tight">品牌营销：<span class="accent">让产品自己说话</span></h2><p class="lead">上传一张老屋外墙照片，用企业自己的瓷砖系列生成翻新概念效果。</p></div>
- <div class="facade"><div class="houses rise" style="--d:2"><div class="housepair"><div class="houseframe"><span class="tag">BEFORE · 原外墙</span><svg viewBox="0 0 600 350" role="img" aria-label="改造前房屋建筑示意"><rect width="600" height="350" fill="#e4ebed"/><rect y="287" width="600" height="63" fill="#cdd6d5"/><path d="M56 115L300 43L551 115" fill="#a29c92" stroke="#989389" stroke-width="12"/><rect x="88" y="116" width="424" height="198" fill="#d3c4ae"/><path d="M88 182H512M88 244H512" stroke="#b3a38f" stroke-width="5"/><path d="M220 115V315M387 115V315" stroke="#b9a893" stroke-width="4"/><rect x="126" y="151" width="93" height="91" fill="#71838a" stroke="#e9e5df" stroke-width="10"/><rect x="391" y="151" width="88" height="91" fill="#71838a" stroke="#e9e5df" stroke-width="10"/><rect x="266" y="212" width="73" height="103" fill="#766753"/><path d="M0 315H600" stroke="#9fa9a6" stroke-width="6"/></svg></div><div class="houseframe after" id="styleHouse" data-style="gray"><span class="tag">AFTER · 使用品牌系列</span><svg viewBox="0 0 600 350" role="img" aria-label="外墙改造后风格示意"><rect width="600" height="350" fill="#e4ebed"/><rect y="287" width="600" height="63" fill="#cdd6d5"/><path d="M56 115L300 43L551 115" fill="var(--roof)" stroke="var(--roof)" stroke-width="12"/><rect x="88" y="116" width="424" height="198" fill="var(--wall)"/><rect x="253" y="116" width="101" height="198" fill="var(--stone)"/><path d="M88 182H512M88 244H512" stroke="var(--trim)" stroke-width="4" opacity=".7"/><rect x="126" y="151" width="93" height="91" fill="#8095a1" stroke="var(--trim)" stroke-width="10"/><rect x="391" y="151" width="88" height="91" fill="#8095a1" stroke="var(--trim)" stroke-width="10"/><rect x="266" y="212" width="73" height="103" fill="#515b64" stroke="var(--trim)" stroke-width="5"/><path d="M0 315H600" stroke="#9fa9a6" stroke-width="6"/></svg></div></div><div class="facade-chooser"><button class="fbtn" data-style="gray" aria-pressed="true">现代灰砖</button><button class="fbtn" data-style="warm" aria-pressed="false">暖米仿石</button><button class="fbtn" data-style="dark" aria-pressed="false">深灰质感</button><span class="hint">点击切换风格示意</span></div></div><div class="brandcase rise" style="--d:3"><h3>免费工具，<br>成为品牌的体验入口。</h3><div class="point"><b>01 / </b>销售人员现场辅助展示</div><div class="point"><b>02 / </b>小红书、公众号投放体验</div><div class="point"><b>03 / </b>设置报价咨询与留资入口</div><div class="status">项目目前仍处方案构想阶段，未落地；效果图是概念示意，并非实际产品施工效果。</div></div></div>
- <div class="under"><span>FROM SAMPLES TO PERSONALIZED PRODUCT EXPERIENCE</span><span>06 / 11</span></div>
-</section>
-<section class="slide" data-title="流量获取：发布只是第一步">
- <div class="top"><div class="left"><b>06</b></div></div>
- <div class="header rise"><h2 class="h2">流量获取：<span class="accent">发布只是第一步</span></h2><p class="lead">市场提供展示与安装渠道；精准流量仍要靠内容、品牌和真实场景带动。</p></div>
- <div class="distribution"><div class="warning rise" style="--d:2"><div class="big">发布<br><span class="accent">≠</span><br>自然流量</div><div class="d">Agent 通常从已安装或当前可访问的技能中选择能力。公开市场里存在一个 Skill，不代表用户对话时就会自动发现它。</div></div><div class="channels rise" style="--d:3"><div class="channel"><span>01</span><b>销售人员</b><p>面对真实客户，直接演示价值</p></div><div class="channel"><span>02</span><b>小红书 / 抖音</b><p>用效果对比、教程和案例种草</p></div><div class="channel"><span>03</span><b>微信公众号</b><p>深入解释、发布入口、沉淀信任</p></div><div class="dist-note">即使用户已安装 Skill，Agent 也可能只在任务匹配时调用；不要把“发布、安装、调用、成交”画上等号。</div></div></div>
- <div class="under"><span>MARKETPLACE ≠ ORGANIC DISTRIBUTION</span><span>07 / 11</span></div>
-</section>
-<section class="slide" data-title="AI 私教：让服务持续发生">
- <div class="top"><div class="left"><b>07</b></div></div>
- <div class="header rise"><h2 class="h2 tight">AI 私教：<span class="accent">让服务持续发生</span></h2><p class="lead">老师把自己的教学经验封装成 Skill，让孩子可以反复练口语、复习薄弱点。</p></div>
- <div class="tutor"><div class="tutorChat rise" style="--d:2"><div class="msg">What did you do after school today?</div><div class="msg you">I play football with my friends.</div><div class="msg">Great! 如果说的是“今天放学后”，我们可以用 <b>played</b>。Try again!</div></div><div class="tutor-right rise" style="--d:3"><div class="tutorpt"><div class="n">01</div><div><b>口语陪练</b><p>主动对话，保持练习频率</p></div></div><div class="tutorpt"><div class="n">02</div><div><b>薄弱点复习</b><p>在授权条件下持续记录学习进度</p></div></div><div class="tutorpt"><div class="n">03</div><div><b>个性化训练</b><p>结合学习兴趣调整练习场景</p></div></div><div class="tutor-note">涉及未成年人时，学习记录和联系方式须遵循监护人知情同意及相关隐私要求。</div></div></div>
- <div class="under"><span>AI AS A CONTINUOUS LEARNING COMPANION</span><span>08 / 11</span></div>
-</section>
-<section class="slide" data-title="客户经营：从一次成交到长期连接">
- <div class="top"><div class="left"><b>08</b></div></div>
- <div class="header rise"><h2 class="h2 tight">客户经营：<br><span class="accent">从一次成交到长期连接</span></h2><p class="lead">AI 私教既可成为家长认识老师的入口，也可以打包进已有课程，形成差异化。</p></div>
- <div class="bundle rise" style="--d:2"><div class="bundle-side"><h3>线下 / 线上<br>真人课时</h3><p>专业教学、阶段性反馈、面对面指导。</p></div><div class="bundle-plus">＋</div><div class="bundle-side good"><h3>真人课程<br>＋ AI 私教</h3><p>课后口语练习、知识巩固、持续陪伴与个性化建议。</p></div></div>
- <div class="bundle-bottom rise" style="--d:3">让家长感受到的不只是“多送一个工具”，而是<strong>孩子学会用 AI 持续学习。</strong></div>
- <div class="under"><span>BETTER LEARNING EXPERIENCE → STRONGER TRUST</span><span>09 / 11</span></div>
-</section>
-<section class="slide" data-title="技能开发：从快速创建到持续迭代">
- <div class="top"><div class="left"><b>09</b></div></div>
- <div class="header rise"><h2 class="h2 tight">技能开发：<br><span class="accent">从快速创建到持续迭代</span></h2><p class="lead">简单 Skill 可以从几段 Markdown 起步；GitHub 帮我们记录每一次进步。</p></div>
- <div class="gitwrap"><div class="terminal rise" style="--d:2"><div class="file">▣ SKILL.md</div><div class="code"><span class="k">name:</span> english-tutor<br><span class="k">description:</span> <span class="v">针对英语陪练与复习的教学技能</span><br><br>1. 了解学生当前水平<br>2. 安排口语对话<br>3. 根据练习结果调整难度<br>4. 必要时提示老师介入</div></div><div class="gitlist rise" style="--d:3"><div class="gititem"><span class="n">01</span><div><b>记录变化</b><p>每次修改留痕，知道哪里变好了</p></div></div><div class="gititem"><span class="n">02</span><div><b>版本回滚</b><p>发现问题，快速恢复之前版本</p></div></div><div class="gititem"><span class="n">03</span><div><b>借鉴开源</b><p>参考 GitHub 上成熟 Skill 的设计</p></div></div><div class="gitfoot">GitHub 托管 → 按各平台规则发布 → 获取反馈 → 持续迭代。不同市场的上架方式并不完全相同。</div></div></div>
- <div class="under"><span>SKILL.md → GITHUB → MARKET → ITERATION</span><span>10 / 11</span></div>
-</section>
-<section class="slide end" data-title="从想法到落地，从技能到生意">
- <div class="top"><div class="left"><b>10</b></div></div>
- <h2 class="rise" style="--d:1">从想法到落地，<br><span class="accent">从技能到生意</span></h2>
- <div class="tagline rise" style="--d:2">从一个小想法开始，做出作品、找到用户、形成长期价值。</div>
- <div class="steps rise" style="--d:3"><div class="step"><b>01</b>找到垂直需求</div><div class="step"><b>02</b>动手开发验证</div><div class="step"><b>03</b>发布、推广、迭代</div></div>
- <div class="qa rise" style="--d:4"><div><p>欢迎现场交流<br>Skill 开发与变现</p><br><small>技能变现交流小组<br>可现场添加微信加入</small></div></div>
- <div class="under"><span>THANK YOU · AI AGENT SKILL BUSINESS</span><span>11 / 11</span></div>
-</section>
-</main></div>
-<div id="progress" role="presentation"></div>
-<div id="hud" aria-label="演示控制"><button id="prev" title="上一页（←）" aria-label="上一页">←</button><span class="count" id="counter">01 / 11</span><button id="next" title="下一页（→ / Space）" aria-label="下一页">→</button><button id="overviewBtn" title="页面总览（O）" aria-label="总览">▦</button><button id="notesBtn" title="演讲备注（N）" aria-label="演讲备注">☷</button><button id="fullBtn" title="全屏（F）" aria-label="全屏">⛶</button></div>
-<aside id="notes" aria-label="演讲备注"><div class="small" id="notesIndex"></div><h3 id="notesTitle"></h3><p id="notesText"></p></aside>
-<div id="overview"><h2>全部页面 <span style="font-size:18px;color:#8290a2;font-weight:500">/ 点击任意章节跳转</span></h2><div id="grid"></div><p class="ov-help">按 O 或 Esc 返回演示。</p></div>
-<script>
-(()=>{
-'use strict';
-const slides=[...document.querySelectorAll('.slide')];
-const notes=[
-`各位大家好，今天分享的主题是 AI Agent 技能开发与变现。\n\n我想先聊聊自己的一些思考：学习 AI 最好的方式，就是动手使用它，甚至尝试自己做一些创作。这场分享不是一堂编程课，而是想讨论为什么值得做一个 Skill，以及怎样让它持续产生价值。`,
-`如果直接把 AI 运用到我们的日常工作，会遇到不少门槛，例如部门间的协作，或者做 PPT、剪辑视频时，当 AI 输出不符合预期，大家往往还是回到原来的工作方式。\n\n遇到这种情况，我觉得可以从一个全新的小想法、小型产品入手。不管是做品牌、做小生意，还是给自己做工具，这种创造冲动我们都有过。小项目的好处，是你可以自己决定怎么验证。`,
-`只做一个技能给别人使用，有时会缺少持续行动的动力。所以要看见它的实际价值。\n\n我把常见的动力总结成三个方向：第一，技能本身产生收入；第二，为企业提供品牌宣传、产品体验和引流留资；第三，通过持续服务与目标客户建立联系。它们可以分开做，也可以组合起来。`,
-`第一类是直接变现的技能。比如一个视频下载工具，解决多个常见平台上合规下载的需求。临时使用可以免费，达到一定次数后提示充值，例如 9.9 元的套餐。有高频需求的用户就可能付费。\n\n这里 9.9 元只是举例，真正落地要核算上游接口、服务器、售后和支付成本，还要遵守内容授权及平台规定。我们想讲的是：一个垂直的小功能，也可以形成清晰的交易。`,
-`视频下载是切入点，不一定是终点。使用者可能还需要自动整理数据分析报表、自动生成文案，甚至对数字人、视频生成和社群服务感兴趣。\n\n这说明即使第一个 Skill 收费金额不大，只要帮助我们建立了一批明确有需求的用户，也有机会发现更多业务方向。`,
-`第二类是企业品牌引流留资。我之前给一家外墙砖厂商提出过老屋翻新效果图 Skill 的方案。用户上传房子外墙照片，Skill 使用厂商自己的产品系列与风格，生成改造后的概念效果。\n\n它既能给销售人员当辅助工具，也能作为免费体验放在公众号、小红书等渠道。用户在体验中认识产品，觉得好看，就可以自愿点击报价咨询入口。\n\n需要特别说明：这个方案目前还没有真正落地，我们还在考虑通过小红书活动来推广。现在页面上的房屋示意也只是风格对比，并非已经生成的客户案例。`,
-`还有一个现实问题。Skill 上架技能市场，基本不会天然获得可观的自然流量。公开市场中有一个技能，并不代表 AI 会主动联网找到并调用它。\n\n如果是用户已安装、当前环境可访问的技能，Agent 有可能依据任务匹配去调用，也可能需要用户明确指令。所以不能简单说只有点名才会触发，但也不应该指望上架后自然增长。外部推广仍然非常重要。`,
-`第三类是英语 AI 私教。这个想法最初来自我给自己的孩子寻找学习方法。很多辅导班老师已经有专业教学经验，可以把这些方法封装成可重复使用的 Skill。\n\n它可以主动和孩子练英语，结合薄弱知识点和兴趣设计练习，尤其适合口语。涉及孩子的长期学习记录，需要在合适的平台条件下保存，并经监护人知情同意。不能假设任何 Skill 都天然拥有长期记忆能力。`,
-`英语 AI 私教不仅可以作为免费体验，吸引有需要的家长自愿添加老师微信；还可以成为机构课程的一部分。比如原本一两千元的课程，只提供线下课时，未来可以搭配持续可用的 AI 课后练习能力。\n\n这里不应该承诺“成绩必然从 60 分提升到 80 分”，更重要的是：除了真人授课，机构还教会孩子如何借助 AI 进行持续学习。家长看到的就不只是几节课，而是一套辅助学习的方案。\n\n‘终身使用’也应以服务实际维护和条款为前提，不要做不能兑现的承诺。`,
-`今天没有时间展开所有技术细节，但想提醒一个很重要的能力：版本管理。版本管理原来是开发者的工具，现在做 Skill 也很有帮助。每次修改的记录、版本回滚、变更历史都可以交给 Git 管理。\n\nGitHub 上面也有很多开源 Skill，可以参考同行的编写思路。把技能保存和发布之后，还要根据不同平台的规范安排安装、审核和维护，例如 WorkBuddy 等平台的支持方式要以官方规则为准。`,
-`最后总结一下：技能开发的难点不在于把文档写出来。今天借助 AI，简单 Skill 甚至可以在一次半小时到一小时的交流中搭出原型。但后续的稳定性、分发、迭代与商业化，仍需要耐心经营。\n\n大家可以先找准自己的一个垂直需求，再选择收费、品牌宣传或者长期客户关系中的一种或多种目标。\n\n感谢大家，接下来欢迎提问。对开发、上架、引流、服务客户这些事情感兴趣，也欢迎现场加我的微信，一起组建技能变现交流小组。谢谢大家。`
-];
-let idx=0,busy=false,touchX=null;const deck=document.getElementById('deck');const counter=document.getElementById('counter');const progress=document.getElementById('progress');const notesEl=document.getElementById('notes');const overview=document.getElementById('overview');
-function resize(){const scale=Math.min(innerWidth/1600,innerHeight/900);deck.style.transform=`translate(-50%,-50%) scale(${scale})`;}addEventListener('resize',resize);resize();
-function update(){counter.textContent=String(idx+1).padStart(2,'0')+' / '+slides.length;progress.style.width=((idx+1)/slides.length*100)+'%';document.getElementById('notesIndex').textContent=String(idx+1).padStart(2,'0')+' / '+slides.length;document.getElementById('notesTitle').textContent=slides[idx].dataset.title;document.getElementById('notesText').textContent=notes[idx]||'';document.querySelectorAll('.thumb').forEach((e,i)=>e.classList.toggle('current',i===idx));document.title=`${slides[idx].dataset.title} · AI Agent 技能开发与变现`;}
-function go(n){if(busy||n===idx||n<0||n>=slides.length)return;busy=true;const old=slides[idx],next=slides[n],dir=n>idx?'next':'prev';old.className=old.className.replace(/\b(in-next|in-prev|out-next|out-prev|leaving|active)\b/g,'').trim();next.className=next.className.replace(/\b(in-next|in-prev|out-next|out-prev|leaving|active)\b/g,'').trim();old.classList.add('leaving','out-'+dir);idx=n;next.classList.add('active','in-'+dir);update();setTimeout(()=>{old.classList.remove('leaving','out-'+dir);next.classList.remove('in-'+dir);busy=false;},760);}
-const n=()=>go(idx+1),p=()=>go(idx-1);document.getElementById('next').onclick=n;document.getElementById('prev').onclick=p;
-function toggleNotes(){notesEl.classList.toggle('open');}function toggleOverview(force){overview.classList.toggle('open',force===undefined?!overview.classList.contains('open'):force);}function toggleFull(){if(document.fullscreenElement){document.exitFullscreen?.();}else{document.documentElement.requestFullscreen?.();}}
-document.getElementById('notesBtn').onclick=toggleNotes;document.getElementById('overviewBtn').onclick=()=>toggleOverview();document.getElementById('fullBtn').onclick=toggleFull;
-const grid=document.getElementById('grid');slides.forEach((s,i)=>{const b=document.createElement('button');b.className='thumb';b.innerHTML=`<div class="n">${String(i+1).padStart(2,'0')} / ${slides.length}</div><div class="t"></div>`;b.querySelector('.t').textContent=s.dataset.title;b.onclick=()=>{toggleOverview(false);if(i!==idx){busy=false;slides.forEach(sl=>sl.classList.remove('leaving','out-next','out-prev','in-next','in-prev'));go(i);}};grid.appendChild(b);});
-addEventListener('keydown',e=>{if(e.target instanceof HTMLButtonElement&&(e.key===' '||e.key==='Enter'))return;if(e.key==='Escape'){if(overview.classList.contains('open')){toggleOverview(false);return;}if(notesEl.classList.contains('open'))notesEl.classList.remove('open');return;}if(e.key.toLowerCase()==='o'){toggleOverview();return;}if(e.key.toLowerCase()==='n'){toggleNotes();return;}if(e.key.toLowerCase()==='f'){toggleFull();return;}if(overview.classList.contains('open'))return;if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();n();}else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();p();}else if(e.key==='Home'){go(0);}else if(e.key==='End'){go(slides.length-1);}});
-document.addEventListener('touchstart',e=>{if(e.touches.length===1)touchX=e.touches[0].clientX;},{passive:true});document.addEventListener('touchend',e=>{if(touchX===null||overview.classList.contains('open'))return;const d=e.changedTouches[0].clientX-touchX;if(Math.abs(d)>72)(d<0?n:p)();touchX=null;},{passive:true});
-const st=document.getElementById('styleHouse');document.querySelectorAll('.fbtn').forEach(btn=>{btn.addEventListener('click',()=>{st.dataset.style=btn.dataset.style;document.querySelectorAll('.fbtn').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));});});
-const initial=new URLSearchParams(location.search).get('slide');if(initial){const v=Math.max(1,Math.min(slides.length,parseInt(initial,10)||1));slides[0].classList.remove('active');idx=v-1;slides[idx].classList.add('active');}update();
-})();
-</script>
-</body>
+            /* Final layout pass: preserve dedicated footer whitespace at 1600x900. */
+            .timeline {
+                margin-top: 38px;
+            }
+            .timeline .step {
+                min-height: 255px;
+                padding-bottom: 18px;
+            }
+            .timeline .step h3 {
+                margin: 17px 0 12px;
+            }
+            .skillcode {
+                margin-top: 24px;
+                padding: 18px 26px;
+            }
+            .skillcode .txt {
+                font-size: 23px;
+            }
+            .skillcode .note {
+                font-size: 18px;
+            }
+            .triple {
+                margin-top: 49px;
+            }
+            .triple .row {
+                min-height: 124px;
+            }
+            .triple .row h3 {
+                font-size: 42px;
+            }
+            .triple .row p {
+                font-size: 23px;
+            }
+            .triple-foot {
+                margin-top: 21px;
+                font-size: 30px;
+            }
+            .branch {
+                margin-top: 40px;
+            }
+            .origin {
+                padding: 29px 30px;
+            }
+            .origin h3 {
+                font-size: 45px;
+                margin: 14px 0;
+            }
+            .origin p {
+                font-size: 22px;
+            }
+            .needrow {
+                padding: 13px 0;
+            }
+            .needrow b {
+                font-size: 28px;
+            }
+            .needrow p {
+                font-size: 19px;
+                margin: 5px 0 0;
+            }
+            .branch-foot {
+                margin-top: 21px;
+                font-size: 28px;
+            }
+            .bundle {
+                margin-top: 40px;
+            }
+            .bundle-bottom {
+                margin-top: 21px;
+                padding-top: 12px;
+                font-size: 25px;
+            }
+            .gitwrap {
+                margin-top: 35px;
+            }
+            .terminal {
+                padding: 22px 30px;
+            }
+            .terminal .code {
+                font: 600 19px/1.62 var(--mono);
+                margin-top: 10px;
+            }
+            .terminal .file {
+                padding-bottom: 13px;
+                font-size: 21px;
+            }
+            .gititem {
+                padding: 15px 0;
+            }
+            .gititem b {
+                font-size: 27px;
+            }
+            .gititem p {
+                font-size: 19px;
+                margin: 5px 0 0;
+            }
+            .gitfoot {
+                margin-top: 13px;
+                font-size: 18px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="viewport">
+            <main id="deck" aria-label="AI Agent 技能开发与变现分享演示文稿">
+                <section
+                    class="slide cover active"
+                    data-title="AI 技能的商业化实践"
+                >
+                    <h1 class="rise" style="--d: 1">
+                        Skill<br /><span style="color: var(--blue)"
+                            >商业化实践</span
+                        >
+                    </h1>
+                    <div class="subtitle rise" style="--d: 2">
+                        Agent技能的开发与变现路径
+                    </div>
+                    <div class="desc rise" style="--d: 3">
+                        早期阶段 ｜ 垂直需求 ｜ 商业驱动
+                    </div>
+                    <div class="cover-right rise" style="--d: 4">
+                        技能的常见用途
+                        <div><b>固定流程和风格</b></div>
+                        <div><b>补充信息和知识</b></div>
+                        <div><b>内置素材和程序</b></div>
+                    </div>
+                    <!--<div class="rings" aria-hidden="true"></div><div class="bottomline">AGENT SKILLS ARE NOT ONLY TOOLS. THEY CAN BECOME BUSINESS ASSETS.</div>-->
+                </section>
+                <section class="slide" data-title="学习 AI，从动手开始">
+                    <div class="top">
+                        <div class="left"><b>01</b></div>
+                    </div>
+                    <div class="header rise">
+                        <h2 class="h2">
+                            学AI，<span class="accent">不如用AI</span>
+                        </h2>
+                        <p class="lead">
+                            AI时代最好的学习方法是直接开干，但是...
+                        </p>
+                    </div>
+                    <div class="barrier rise" style="--d: 2">
+                        <div class="barrier-side">
+                            <h3>改造已有工作</h3>
+                            <div class="item">
+                                <span>部门协作</span
+                                ><span>AI生成的东西不好改</span>
+                            </div>
+                            <div class="item">
+                                <span>标准不符合</span
+                                ><span>不达预期就废了</span>
+                            </div>
+                            <div class="item">
+                                <span>改变习惯</span><span>需要共同配合</span>
+                            </div>
+                        </div>
+                        <div class="barrier-center">→</div>
+                        <div class="barrier-side good">
+                            <h3>从零做一个小产品</h3>
+                            <div class="item">
+                                <span>需求更聚焦</span><span>一个明确问题</span>
+                            </div>
+                            <div class="item">
+                                <span>反馈更及时</span><span>马上验证效果</span>
+                            </div>
+                            <div class="item">
+                                <span>拥有自主权</span><span>自己决定迭代</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="barrier-take rise" style="--d: 3">
+                        先用 AI 创造一个新东西，再逐步把经验带回工作中。
+                    </div>
+                    <div class="under">
+                        <span>FROM CONSUMPTION TO CREATION</span
+                        ><span>02 / 11</span>
+                    </div>
+                </section>
+                <section class="slide" data-title="一个技能，三种价值">
+                    <div class="top">
+                        <div class="left"><b>02</b></div>
+                    </div>
+                    <div class="header rise">
+                        <h2 class="h2">
+                            一个技能，<span class="accent">三种价值</span>
+                        </h2>
+                        <p class="lead">
+                            做得出来只是第一步。要持续迭代，需要明确它能带来什么价值。
+                        </p>
+                    </div>
+                    <div class="triple rise" style="--d: 2">
+                        <div class="row">
+                            <div class="num">01</div>
+                            <h3>直接付费</h3>
+                            <p>按次、套餐、订阅，为完成具体任务收费。</p>
+                            <div class="edge">收入</div>
+                        </div>
+                        <div class="row">
+                            <div class="num">02</div>
+                            <h3>品牌宣传</h3>
+                            <p>让用户体验自己的产品、风格和专业能力。</p>
+                            <div class="edge">流量</div>
+                        </div>
+                        <div class="row">
+                            <div class="num">03</div>
+                            <h3>长期联系</h3>
+                            <p>建立真实信任，承接咨询与持续服务。</p>
+                            <div class="edge">客户</div>
+                        </div>
+                    </div>
+                    <div class="triple-foot rise" style="--d: 3">
+                        不需要三选一。<span class="accent"
+                            >它们可以组合起来。</span
+                        >
+                    </div>
+                    <div class="under">
+                        <span>REVENUE · BRAND · RELATIONSHIP</span
+                        ><span>03 / 11</span>
+                    </div>
+                </section>
+                <section class="slide" data-title="技能变现：让能力产生收入">
+                    <div class="top">
+                        <div class="left"><b>03</b></div>
+                    </div>
+                    <div class="header rise">
+                        <h2 class="h2 tight">
+                            技能变现：<span class="accent">让能力产生收入</span>
+                        </h2>
+                        <p class="lead">
+                            临时体验免费；达到一定次数后，再为实际需要充值。
+                        </p>
+                    </div>
+                    <div class="paid">
+                        <div class="chatbox rise" style="--d: 2">
+                            <div class="bubble user">
+                                帮我保存这个我有权下载的视频。
+                            </div>
+                            <div class="bubble bot">
+                                已解析链接，可以开始下载。<br />本月免费额度剩余：0
+                                次。
+                            </div>
+                            <div class="purchase">
+                                <span>继续使用 · 充值示例</span
+                                ><strong>¥ 9.9</strong>
+                            </div>
+                        </div>
+                        <div class="paidsteps rise" style="--d: 3">
+                            <div class="paidstep">
+                                <span class="circle">1</span>
+                                <div>
+                                    <b>提供即时价值</b>
+                                    <p>
+                                        解决
+                                        YouTube、抖音、小红书等来源的合规下载需求。
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="paidstep">
+                                <span class="circle">2</span>
+                                <div>
+                                    <b>低门槛试用</b>
+                                    <p>
+                                        免费次数让用户确认“它真的能解决问题”。
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="paidstep">
+                                <span class="circle">3</span>
+                                <div>
+                                    <b>按需付费</b>
+                                    <p>高频用户自愿购买次数或使用额度。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="smallcap rise" style="--d: 4">
+                        ¥9.9
+                        为演讲示例，不代表已上线价格。下载须符合内容授权与平台条款。
+                    </div>
+                    <div class="under">
+                        <span>A SMALL UTILITY CAN BECOME A SMALL BUSINESS</span
+                        ><span>04 / 11</span>
+                    </div>
+                </section>
+                <section class="slide" data-title="需求延伸：从工具走向生意">
+                    <div class="top">
+                        <div class="left"><b>04</b></div>
+                    </div>
+                    <div class="header rise">
+                        <h2 class="h2">
+                            需求延伸：<span class="accent">从工具走向生意</span>
+                        </h2>
+                        <p class="lead">
+                            同一批内容创作者和经营者，可能还需要从素材到内容生产的一整套服务。
+                        </p>
+                    </div>
+                    <div class="branch">
+                        <div class="origin rise" style="--d: 2">
+                            <h3>视频下载<br />Skill</h3>
+                            <p>
+                                通过一个低门槛工具，聚集有真实内容处理需求的用户。
+                            </p>
+                        </div>
+                        <div class="arrow rise" style="--d: 3">→</div>
+                        <div class="needrows rise" style="--d: 4">
+                            <div class="needrow">
+                                <span class="icon">A1</span>
+                                <div>
+                                    <b>分析报表</b>
+                                    <p>视频数据整理、效果复盘</p>
+                                </div>
+                            </div>
+                            <div class="needrow">
+                                <span class="icon">A2</span>
+                                <div>
+                                    <b>内容生产</b>
+                                    <p>自动文案、选题、视频生成</p>
+                                </div>
+                            </div>
+                            <div class="needrow">
+                                <span class="icon">A3</span>
+                                <div>
+                                    <b>长期业务</b>
+                                    <p>社群、数字人、定制自动化</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="branch-foot rise" style="--d: 5">
+                        Skill 收入之外，更重要的是：<span class="accent"
+                            >你开始知道用户真正需要什么。</span
+                        >
+                    </div>
+                    <div class="under">
+                        <span>FROM A SINGLE TOOL TO A PRODUCT ECOSYSTEM</span
+                        ><span>05 / 11</span>
+                    </div>
+                </section>
+                <section class="slide" data-title="品牌营销：让产品自己说话">
+                    <div class="top">
+                        <div class="left"><b>05</b></div>
+                    </div>
+                    <div class="header rise">
+                        <h2 class="h2 tight">
+                            品牌营销：<span class="accent">让产品自己说话</span>
+                        </h2>
+                        <p class="lead">
+                            上传一张老屋外墙照片，用企业自己的瓷砖系列生成翻新概念效果。
+                        </p>
+                    </div>
+                    <div class="facade">
+                        <div class="houses rise" style="--d: 2">
+                            <div class="housepair">
+                                <div class="houseframe">
+                                    <span class="tag">BEFORE · 原外墙</span
+                                    ><svg
+                                        viewBox="0 0 600 350"
+                                        role="img"
+                                        aria-label="改造前房屋建筑示意"
+                                    >
+                                        <rect
+                                            width="600"
+                                            height="350"
+                                            fill="#e4ebed"
+                                        />
+                                        <rect
+                                            y="287"
+                                            width="600"
+                                            height="63"
+                                            fill="#cdd6d5"
+                                        />
+                                        <path
+                                            d="M56 115L300 43L551 115"
+                                            fill="#a29c92"
+                                            stroke="#989389"
+                                            stroke-width="12"
+                                        />
+                                        <rect
+                                            x="88"
+                                            y="116"
+                                            width="424"
+                                            height="198"
+                                            fill="#d3c4ae"
+                                        />
+                                        <path
+                                            d="M88 182H512M88 244H512"
+                                            stroke="#b3a38f"
+                                            stroke-width="5"
+                                        />
+                                        <path
+                                            d="M220 115V315M387 115V315"
+                                            stroke="#b9a893"
+                                            stroke-width="4"
+                                        />
+                                        <rect
+                                            x="126"
+                                            y="151"
+                                            width="93"
+                                            height="91"
+                                            fill="#71838a"
+                                            stroke="#e9e5df"
+                                            stroke-width="10"
+                                        />
+                                        <rect
+                                            x="391"
+                                            y="151"
+                                            width="88"
+                                            height="91"
+                                            fill="#71838a"
+                                            stroke="#e9e5df"
+                                            stroke-width="10"
+                                        />
+                                        <rect
+                                            x="266"
+                                            y="212"
+                                            width="73"
+                                            height="103"
+                                            fill="#766753"
+                                        />
+                                        <path
+                                            d="M0 315H600"
+                                            stroke="#9fa9a6"
+                                            stroke-width="6"
+                                        />
+                                    </svg>
+                                </div>
+                                <div
+                                    class="houseframe after"
+                                    id="styleHouse"
+                                    data-style="gray"
+                                >
+                                    <span class="tag">AFTER · 使用品牌系列</span
+                                    ><svg
+                                        viewBox="0 0 600 350"
+                                        role="img"
+                                        aria-label="外墙改造后风格示意"
+                                    >
+                                        <rect
+                                            width="600"
+                                            height="350"
+                                            fill="#e4ebed"
+                                        />
+                                        <rect
+                                            y="287"
+                                            width="600"
+                                            height="63"
+                                            fill="#cdd6d5"
+                                        />
+                                        <path
+                                            d="M56 115L300 43L551 115"
+                                            fill="var(--roof)"
+                                            stroke="var(--roof)"
+                                            stroke-width="12"
+                                        />
+                                        <rect
+                                            x="88"
+                                            y="116"
+                                            width="424"
+                                            height="198"
+                                            fill="var(--wall)"
+                                        />
+                                        <rect
+                                            x="253"
+                                            y="116"
+                                            width="101"
+                                            height="198"
+                                            fill="var(--stone)"
+                                        />
+                                        <path
+                                            d="M88 182H512M88 244H512"
+                                            stroke="var(--trim)"
+                                            stroke-width="4"
+                                            opacity=".7"
+                                        />
+                                        <rect
+                                            x="126"
+                                            y="151"
+                                            width="93"
+                                            height="91"
+                                            fill="#8095a1"
+                                            stroke="var(--trim)"
+                                            stroke-width="10"
+                                        />
+                                        <rect
+                                            x="391"
+                                            y="151"
+                                            width="88"
+                                            height="91"
+                                            fill="#8095a1"
+                                            stroke="var(--trim)"
+                                            stroke-width="10"
+                                        />
+                                        <rect
+                                            x="266"
+                                            y="212"
+                                            width="73"
+                                            height="103"
+                                            fill="#515b64"
+                                            stroke="var(--trim)"
+                                            stroke-width="5"
+                                        />
+                                        <path
+                                            d="M0 315H600"
+                                            stroke="#9fa9a6"
+                                            stroke-width="6"
+                                        />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="facade-chooser">
+                                <button
+                                    class="fbtn"
+                                    data-style="gray"
+                                    aria-pressed="true"
+                                >
+                                    现代灰砖</button
+                                ><button
+                                    class="fbtn"
+                                    data-style="warm"
+                                    aria-pressed="false"
+                                >
+                                    暖米仿石</button
+                                ><button
+                                    class="fbtn"
+                                    data-style="dark"
+                                    aria-pressed="false"
+                                >
+                                    深灰质感</button
+                                ><span class="hint">点击切换风格示意</span>
+                            </div>
+                        </div>
+                        <div class="brandcase rise" style="--d: 3">
+                            <h3>免费工具，<br />成为品牌的体验入口。</h3>
+                            <div class="point">
+                                <b>01 / </b>销售人员现场辅助展示
+                            </div>
+                            <div class="point">
+                                <b>02 / </b>小红书、公众号投放体验
+                            </div>
+                            <div class="point">
+                                <b>03 / </b>设置报价咨询与留资入口
+                            </div>
+                            <div class="status">
+                                项目目前仍处方案构想阶段，未落地；效果图是概念示意，并非实际产品施工效果。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="under">
+                        <span
+                            >FROM SAMPLES TO PERSONALIZED PRODUCT
+                            EXPERIENCE</span
+                        ><span>06 / 11</span>
+                    </div>
+                </section>
+                <section class="slide" data-title="流量获取：发布只是第一步">
+                    <div class="top">
+                        <div class="left"><b>06</b></div>
+                    </div>
+                    <div class="header rise">
+                        <h2 class="h2">
+                            流量获取：<span class="accent">发布只是第一步</span>
+                        </h2>
+                        <p class="lead">
+                            市场提供展示与安装渠道；精准流量仍要靠内容、品牌和真实场景带动。
+                        </p>
+                    </div>
+                    <div class="distribution">
+                        <div class="warning rise" style="--d: 2">
+                            <div class="big">
+                                发布<br /><span class="accent">≠</span
+                                ><br />自然流量
+                            </div>
+                            <div class="d">
+                                Agent
+                                通常从已安装或当前可访问的技能中选择能力。公开市场里存在一个
+                                Skill，不代表用户对话时就会自动发现它。
+                            </div>
+                        </div>
+                        <div class="channels rise" style="--d: 3">
+                            <div class="channel">
+                                <span>01</span><b>销售人员</b>
+                                <p>面对真实客户，直接演示价值</p>
+                            </div>
+                            <div class="channel">
+                                <span>02</span><b>小红书 / 抖音</b>
+                                <p>用效果对比、教程和案例种草</p>
+                            </div>
+                            <div class="channel">
+                                <span>03</span><b>微信公众号</b>
+                                <p>深入解释、发布入口、沉淀信任</p>
+                            </div>
+                            <div class="dist-note">
+                                即使用户已安装 Skill，Agent
+                                也可能只在任务匹配时调用；不要把“发布、安装、调用、成交”画上等号。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="under">
+                        <span>MARKETPLACE ≠ ORGANIC DISTRIBUTION</span
+                        ><span>07 / 11</span>
+                    </div>
+                </section>
+                <section class="slide" data-title="AI 私教：让服务持续发生">
+                    <div class="top">
+                        <div class="left"><b>07</b></div>
+                    </div>
+                    <div class="header rise">
+                        <h2 class="h2 tight">
+                            AI 私教：<span class="accent">让服务持续发生</span>
+                        </h2>
+                        <p class="lead">
+                            老师把自己的教学经验封装成
+                            Skill，让孩子可以反复练口语、复习薄弱点。
+                        </p>
+                    </div>
+                    <div class="tutor">
+                        <div class="tutorChat rise" style="--d: 2">
+                            <div class="msg">
+                                What did you do after school today?
+                            </div>
+                            <div class="msg you">
+                                I play football with my friends.
+                            </div>
+                            <div class="msg">
+                                Great! 如果说的是“今天放学后”，我们可以用
+                                <b>played</b>。Try again!
+                            </div>
+                        </div>
+                        <div class="tutor-right rise" style="--d: 3">
+                            <div class="tutorpt">
+                                <div class="n">01</div>
+                                <div>
+                                    <b>口语陪练</b>
+                                    <p>主动对话，保持练习频率</p>
+                                </div>
+                            </div>
+                            <div class="tutorpt">
+                                <div class="n">02</div>
+                                <div>
+                                    <b>薄弱点复习</b>
+                                    <p>在授权条件下持续记录学习进度</p>
+                                </div>
+                            </div>
+                            <div class="tutorpt">
+                                <div class="n">03</div>
+                                <div>
+                                    <b>个性化训练</b>
+                                    <p>结合学习兴趣调整练习场景</p>
+                                </div>
+                            </div>
+                            <div class="tutor-note">
+                                涉及未成年人时，学习记录和联系方式须遵循监护人知情同意及相关隐私要求。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="under">
+                        <span>AI AS A CONTINUOUS LEARNING COMPANION</span
+                        ><span>08 / 11</span>
+                    </div>
+                </section>
+                <section
+                    class="slide"
+                    data-title="客户经营：从一次成交到长期连接"
+                >
+                    <div class="top">
+                        <div class="left"><b>08</b></div>
+                    </div>
+                    <div class="header rise">
+                        <h2 class="h2 tight">
+                            客户经营：<br /><span class="accent"
+                                >从一次成交到长期连接</span
+                            >
+                        </h2>
+                        <p class="lead">
+                            AI
+                            私教既可成为家长认识老师的入口，也可以打包进已有课程，形成差异化。
+                        </p>
+                    </div>
+                    <div class="bundle rise" style="--d: 2">
+                        <div class="bundle-side">
+                            <h3>线下 / 线上<br />真人课时</h3>
+                            <p>专业教学、阶段性反馈、面对面指导。</p>
+                        </div>
+                        <div class="bundle-plus">＋</div>
+                        <div class="bundle-side good">
+                            <h3>真人课程<br />＋ AI 私教</h3>
+                            <p>
+                                课后口语练习、知识巩固、持续陪伴与个性化建议。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bundle-bottom rise" style="--d: 3">
+                        让家长感受到的不只是“多送一个工具”，而是<strong
+                            >孩子学会用 AI 持续学习。</strong
+                        >
+                    </div>
+                    <div class="under">
+                        <span>BETTER LEARNING EXPERIENCE → STRONGER TRUST</span
+                        ><span>09 / 11</span>
+                    </div>
+                </section>
+                <section
+                    class="slide"
+                    data-title="技能开发：从快速创建到持续迭代"
+                >
+                    <div class="top">
+                        <div class="left"><b>09</b></div>
+                    </div>
+                    <div class="header rise">
+                        <h2 class="h2 tight">
+                            技能开发：<br /><span class="accent"
+                                >从快速创建到持续迭代</span
+                            >
+                        </h2>
+                        <p class="lead">
+                            简单 Skill 可以从几段 Markdown 起步；GitHub
+                            帮我们记录每一次进步。
+                        </p>
+                    </div>
+                    <div class="gitwrap">
+                        <div class="terminal rise" style="--d: 2">
+                            <div class="file">▣ SKILL.md</div>
+                            <div class="code">
+                                <span class="k">name:</span>
+                                english-tutor<br /><span class="k"
+                                    >description:</span
+                                >
+                                <span class="v"
+                                    >针对英语陪练与复习的教学技能</span
+                                ><br /><br />1. 了解学生当前水平<br />2.
+                                安排口语对话<br />3. 根据练习结果调整难度<br />4.
+                                必要时提示老师介入
+                            </div>
+                        </div>
+                        <div class="gitlist rise" style="--d: 3">
+                            <div class="gititem">
+                                <span class="n">01</span>
+                                <div>
+                                    <b>记录变化</b>
+                                    <p>每次修改留痕，知道哪里变好了</p>
+                                </div>
+                            </div>
+                            <div class="gititem">
+                                <span class="n">02</span>
+                                <div>
+                                    <b>版本回滚</b>
+                                    <p>发现问题，快速恢复之前版本</p>
+                                </div>
+                            </div>
+                            <div class="gititem">
+                                <span class="n">03</span>
+                                <div>
+                                    <b>借鉴开源</b>
+                                    <p>参考 GitHub 上成熟 Skill 的设计</p>
+                                </div>
+                            </div>
+                            <div class="gitfoot">
+                                GitHub 托管 → 按各平台规则发布 → 获取反馈 →
+                                持续迭代。不同市场的上架方式并不完全相同。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="under">
+                        <span>SKILL.md → GITHUB → MARKET → ITERATION</span
+                        ><span>10 / 11</span>
+                    </div>
+                </section>
+                <section
+                    class="slide end"
+                    data-title="从想法到落地，从技能到生意"
+                >
+                    <div class="top">
+                        <div class="left"><b>10</b></div>
+                    </div>
+                    <h2 class="rise" style="--d: 1">
+                        从想法到落地，<br /><span class="accent"
+                            >从技能到生意</span
+                        >
+                    </h2>
+                    <div class="tagline rise" style="--d: 2">
+                        从一个小想法开始，做出作品、找到用户、形成长期价值。
+                    </div>
+                    <div class="steps rise" style="--d: 3">
+                        <div class="step"><b>01</b>找到垂直需求</div>
+                        <div class="step"><b>02</b>动手开发验证</div>
+                        <div class="step"><b>03</b>发布、推广、迭代</div>
+                    </div>
+                    <div class="qa rise" style="--d: 4">
+                        <div>
+                            <p>欢迎现场交流<br />Skill 开发与变现</p>
+                            <br /><small
+                                >技能变现交流小组<br />可现场添加微信加入</small
+                            >
+                        </div>
+                    </div>
+                    <div class="under">
+                        <span>THANK YOU · AI AGENT SKILL BUSINESS</span
+                        ><span>11 / 11</span>
+                    </div>
+                </section>
+            </main>
+        </div>
+        <div id="progress" role="presentation"></div>
+        <div id="hud" aria-label="演示控制">
+            <button id="prev" title="上一页（←）" aria-label="上一页">←</button
+            ><span class="count" id="counter">01 / 11</span
+            ><button id="next" title="下一页（→ / Space）" aria-label="下一页">
+                →</button
+            ><button id="overviewBtn" title="页面总览（O）" aria-label="总览">
+                ▦</button
+            ><button id="notesBtn" title="演讲备注（N）" aria-label="演讲备注">
+                ☷</button
+            ><button id="fullBtn" title="全屏（F）" aria-label="全屏">⛶</button>
+        </div>
+        <aside id="notes" aria-label="演讲备注">
+            <div class="small" id="notesIndex"></div>
+            <h3 id="notesTitle"></h3>
+            <p id="notesText"></p>
+        </aside>
+        <div id="overview">
+            <h2>
+                全部页面
+                <span style="font-size: 18px; color: #8290a2; font-weight: 500"
+                    >/ 点击任意章节跳转</span
+                >
+            </h2>
+            <div id="grid"></div>
+            <p class="ov-help">按 O 或 Esc 返回演示。</p>
+        </div>
+        <script>
+            (() => {
+                "use strict";
+                const slides = [...document.querySelectorAll(".slide")];
+                const notes = [
+                    `各位大家好，今天分享的主题是 AI Agent 技能开发与变现。\n\n我想先聊聊自己的一些思考：学习 AI 最好的方式，就是动手使用它，甚至尝试自己做一些创作。这场分享不是一堂编程课，而是想讨论为什么值得做一个 Skill，以及怎样让它持续产生价值。`,
+                    `如果直接把 AI 运用到我们的日常工作，会遇到不少门槛，例如部门间的协作，或者做 PPT、剪辑视频时，当 AI 输出不符合预期，大家往往还是回到原来的工作方式。\n\n遇到这种情况，我觉得可以从一个全新的小想法、小型产品入手。不管是做品牌、做小生意，还是给自己做工具，这种创造冲动我们都有过。小项目的好处，是你可以自己决定怎么验证。`,
+                    `只做一个技能给别人使用，有时会缺少持续行动的动力。所以要看见它的实际价值。\n\n我把常见的动力总结成三个方向：第一，技能本身产生收入；第二，为企业提供品牌宣传、产品体验和引流留资；第三，通过持续服务与目标客户建立联系。它们可以分开做，也可以组合起来。`,
+                    `第一类是直接变现的技能。比如一个视频下载工具，解决多个常见平台上合规下载的需求。临时使用可以免费，达到一定次数后提示充值，例如 9.9 元的套餐。有高频需求的用户就可能付费。\n\n这里 9.9 元只是举例，真正落地要核算上游接口、服务器、售后和支付成本，还要遵守内容授权及平台规定。我们想讲的是：一个垂直的小功能，也可以形成清晰的交易。`,
+                    `视频下载是切入点，不一定是终点。使用者可能还需要自动整理数据分析报表、自动生成文案，甚至对数字人、视频生成和社群服务感兴趣。\n\n这说明即使第一个 Skill 收费金额不大，只要帮助我们建立了一批明确有需求的用户，也有机会发现更多业务方向。`,
+                    `第二类是企业品牌引流留资。我之前给一家外墙砖厂商提出过老屋翻新效果图 Skill 的方案。用户上传房子外墙照片，Skill 使用厂商自己的产品系列与风格，生成改造后的概念效果。\n\n它既能给销售人员当辅助工具，也能作为免费体验放在公众号、小红书等渠道。用户在体验中认识产品，觉得好看，就可以自愿点击报价咨询入口。\n\n需要特别说明：这个方案目前还没有真正落地，我们还在考虑通过小红书活动来推广。现在页面上的房屋示意也只是风格对比，并非已经生成的客户案例。`,
+                    `还有一个现实问题。Skill 上架技能市场，基本不会天然获得可观的自然流量。公开市场中有一个技能，并不代表 AI 会主动联网找到并调用它。\n\n如果是用户已安装、当前环境可访问的技能，Agent 有可能依据任务匹配去调用，也可能需要用户明确指令。所以不能简单说只有点名才会触发，但也不应该指望上架后自然增长。外部推广仍然非常重要。`,
+                    `第三类是英语 AI 私教。这个想法最初来自我给自己的孩子寻找学习方法。很多辅导班老师已经有专业教学经验，可以把这些方法封装成可重复使用的 Skill。\n\n它可以主动和孩子练英语，结合薄弱知识点和兴趣设计练习，尤其适合口语。涉及孩子的长期学习记录，需要在合适的平台条件下保存，并经监护人知情同意。不能假设任何 Skill 都天然拥有长期记忆能力。`,
+                    `英语 AI 私教不仅可以作为免费体验，吸引有需要的家长自愿添加老师微信；还可以成为机构课程的一部分。比如原本一两千元的课程，只提供线下课时，未来可以搭配持续可用的 AI 课后练习能力。\n\n这里不应该承诺“成绩必然从 60 分提升到 80 分”，更重要的是：除了真人授课，机构还教会孩子如何借助 AI 进行持续学习。家长看到的就不只是几节课，而是一套辅助学习的方案。\n\n‘终身使用’也应以服务实际维护和条款为前提，不要做不能兑现的承诺。`,
+                    `今天没有时间展开所有技术细节，但想提醒一个很重要的能力：版本管理。版本管理原来是开发者的工具，现在做 Skill 也很有帮助。每次修改的记录、版本回滚、变更历史都可以交给 Git 管理。\n\nGitHub 上面也有很多开源 Skill，可以参考同行的编写思路。把技能保存和发布之后，还要根据不同平台的规范安排安装、审核和维护，例如 WorkBuddy 等平台的支持方式要以官方规则为准。`,
+                    `最后总结一下：技能开发的难点不在于把文档写出来。今天借助 AI，简单 Skill 甚至可以在一次半小时到一小时的交流中搭出原型。但后续的稳定性、分发、迭代与商业化，仍需要耐心经营。\n\n大家可以先找准自己的一个垂直需求，再选择收费、品牌宣传或者长期客户关系中的一种或多种目标。\n\n感谢大家，接下来欢迎提问。对开发、上架、引流、服务客户这些事情感兴趣，也欢迎现场加我的微信，一起组建技能变现交流小组。谢谢大家。`,
+                ];
+                let idx = 0,
+                    busy = false,
+                    touchX = null;
+                const deck = document.getElementById("deck");
+                const counter = document.getElementById("counter");
+                const progress = document.getElementById("progress");
+                const notesEl = document.getElementById("notes");
+                const overview = document.getElementById("overview");
+                function resize() {
+                    const scale = Math.min(
+                        innerWidth / 1600,
+                        innerHeight / 900,
+                    );
+                    deck.style.transform = `translate(-50%,-50%) scale(${scale})`;
+                }
+                addEventListener("resize", resize);
+                resize();
+                function update() {
+                    counter.textContent =
+                        String(idx + 1).padStart(2, "0") +
+                        " / " +
+                        slides.length;
+                    progress.style.width =
+                        ((idx + 1) / slides.length) * 100 + "%";
+                    document.getElementById("notesIndex").textContent =
+                        String(idx + 1).padStart(2, "0") +
+                        " / " +
+                        slides.length;
+                    document.getElementById("notesTitle").textContent =
+                        slides[idx].dataset.title;
+                    document.getElementById("notesText").textContent =
+                        notes[idx] || "";
+                    document
+                        .querySelectorAll(".thumb")
+                        .forEach((e, i) =>
+                            e.classList.toggle("current", i === idx),
+                        );
+                    document.title = `${slides[idx].dataset.title} · AI Agent 技能开发与变现`;
+                }
+                function go(n) {
+                    if (busy || n === idx || n < 0 || n >= slides.length)
+                        return;
+                    busy = true;
+                    const old = slides[idx],
+                        next = slides[n],
+                        dir = n > idx ? "next" : "prev";
+                    old.className = old.className
+                        .replace(
+                            /\b(in-next|in-prev|out-next|out-prev|leaving|active)\b/g,
+                            "",
+                        )
+                        .trim();
+                    next.className = next.className
+                        .replace(
+                            /\b(in-next|in-prev|out-next|out-prev|leaving|active)\b/g,
+                            "",
+                        )
+                        .trim();
+                    old.classList.add("leaving", "out-" + dir);
+                    idx = n;
+                    next.classList.add("active", "in-" + dir);
+                    update();
+                    setTimeout(() => {
+                        old.classList.remove("leaving", "out-" + dir);
+                        next.classList.remove("in-" + dir);
+                        busy = false;
+                    }, 760);
+                }
+                const n = () => go(idx + 1),
+                    p = () => go(idx - 1);
+                document.getElementById("next").onclick = n;
+                document.getElementById("prev").onclick = p;
+                function toggleNotes() {
+                    notesEl.classList.toggle("open");
+                }
+                function toggleOverview(force) {
+                    overview.classList.toggle(
+                        "open",
+                        force === undefined
+                            ? !overview.classList.contains("open")
+                            : force,
+                    );
+                }
+                function toggleFull() {
+                    if (document.fullscreenElement) {
+                        document.exitFullscreen?.();
+                    } else {
+                        document.documentElement.requestFullscreen?.();
+                    }
+                }
+                document.getElementById("notesBtn").onclick = toggleNotes;
+                document.getElementById("overviewBtn").onclick = () =>
+                    toggleOverview();
+                document.getElementById("fullBtn").onclick = toggleFull;
+                const grid = document.getElementById("grid");
+                slides.forEach((s, i) => {
+                    const b = document.createElement("button");
+                    b.className = "thumb";
+                    b.innerHTML = `<div class="n">${String(i + 1).padStart(2, "0")} / ${slides.length}</div><div class="t"></div>`;
+                    b.querySelector(".t").textContent = s.dataset.title;
+                    b.onclick = () => {
+                        toggleOverview(false);
+                        if (i !== idx) {
+                            busy = false;
+                            slides.forEach((sl) =>
+                                sl.classList.remove(
+                                    "leaving",
+                                    "out-next",
+                                    "out-prev",
+                                    "in-next",
+                                    "in-prev",
+                                ),
+                            );
+                            go(i);
+                        }
+                    };
+                    grid.appendChild(b);
+                });
+                addEventListener("keydown", (e) => {
+                    if (
+                        e.target instanceof HTMLButtonElement &&
+                        (e.key === " " || e.key === "Enter")
+                    )
+                        return;
+                    if (e.key === "Escape") {
+                        if (overview.classList.contains("open")) {
+                            toggleOverview(false);
+                            return;
+                        }
+                        if (notesEl.classList.contains("open"))
+                            notesEl.classList.remove("open");
+                        return;
+                    }
+                    if (e.key.toLowerCase() === "o") {
+                        toggleOverview();
+                        return;
+                    }
+                    if (e.key.toLowerCase() === "n") {
+                        toggleNotes();
+                        return;
+                    }
+                    if (e.key.toLowerCase() === "f") {
+                        toggleFull();
+                        return;
+                    }
+                    if (overview.classList.contains("open")) return;
+                    if (
+                        e.key === "ArrowRight" ||
+                        e.key === "PageDown" ||
+                        e.key === " "
+                    ) {
+                        e.preventDefault();
+                        n();
+                    } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+                        e.preventDefault();
+                        p();
+                    } else if (e.key === "Home") {
+                        go(0);
+                    } else if (e.key === "End") {
+                        go(slides.length - 1);
+                    }
+                });
+                document.addEventListener(
+                    "touchstart",
+                    (e) => {
+                        if (e.touches.length === 1)
+                            touchX = e.touches[0].clientX;
+                    },
+                    { passive: true },
+                );
+                document.addEventListener(
+                    "touchend",
+                    (e) => {
+                        if (
+                            touchX === null ||
+                            overview.classList.contains("open")
+                        )
+                            return;
+                        const d = e.changedTouches[0].clientX - touchX;
+                        if (Math.abs(d) > 72) (d < 0 ? n : p)();
+                        touchX = null;
+                    },
+                    { passive: true },
+                );
+                const st = document.getElementById("styleHouse");
+                document.querySelectorAll(".fbtn").forEach((btn) => {
+                    btn.addEventListener("click", () => {
+                        st.dataset.style = btn.dataset.style;
+                        document
+                            .querySelectorAll(".fbtn")
+                            .forEach((b) =>
+                                b.setAttribute(
+                                    "aria-pressed",
+                                    String(b === btn),
+                                ),
+                            );
+                    });
+                });
+                const initial = new URLSearchParams(location.search).get(
+                    "slide",
+                );
+                if (initial) {
+                    const v = Math.max(
+                        1,
+                        Math.min(slides.length, parseInt(initial, 10) || 1),
+                    );
+                    slides[0].classList.remove("active");
+                    idx = v - 1;
+                    slides[idx].classList.add("active");
+                }
+                update();
+            })();
+        </script>
+    </body>
 </html>
